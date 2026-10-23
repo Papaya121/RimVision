@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RimWorld3DVR.Render.Rim3DModelDef MayRequire="ludeon.rimworld.ideology">
+    <defName>Rim3DVR_DarktorchModel</defName>
+    <thingDef>Darktorch</thingDef>
+    <aiGenerated>false</aiGenerated>
+    <heightOffset>0</heightOffset>
+    <graphicPathContains />
+    <anchors />
+    <vertices>
+      <li>
+        <x>0.21716</x>
+        <z>0.21716</z>
+        <height>-0.1</height>
+      </li>
+      <li>
+        <x>0.78284</x>
+        <z>0.78284</z>
+        <height>-0.1</height>
+      </li>
+      <li>
+        <x>0.78284</x>
+        <z>0.78284</z>
+        <height>0.7</height>
+      </li>
+      <li>
+        <x>0.21716</x>
+        <z>0.21716</z>
+        <height>0.7</height>
+      </li>
+      <li>
+        <x>0.78284</x>
+        <z>0.21716</z>
+        <height>-0.1</height>
+      </li>
+      <li>
+        <x>0.21716</x>
+        <z>0.78284</z>
+        <height>-0.1</height>
+      </li>
+      <li>
+        <x>0.21716</x>
+        <z>0.78284</z>
+        <height>0.7</height>
+      </li>
+      <li>
+        <x>0.78284</x>
+        <z>0.21716</z>
+        <height>0.7</height>
+      </li>
+    </vertices>
+    <faces>
+      <li>
+        <indices>0,1,2,3</indices>
+        <texture>Thing</texture>
+      </li>
+      <li>
+        <indices>4,5,6,7</indices>
+        <texture>Thing</texture>
+      </li>
+    </faces>
+    <autoLods>
+      <li />
+      <li />
+    </autoLods>
+  </RimWorld3DVR.Render.Rim3DModelDef>
+</Defs>

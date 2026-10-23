@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Recovery_Rim3DResearch.reportString>исследует.</Recovery_Rim3DResearch.reportString>
+  <Recovery_Rim3DBuild.reportString>строит TargetA.</Recovery_Rim3DBuild.reportString>
+  <Recovery_Rim3DIngest.reportString>употребляет TargetA.</Recovery_Rim3DIngest.reportString>
+  <Recovery_Rim3DControl.reportString>управляется игроком в 3D.</Recovery_Rim3DControl.reportString>
+  <Recovery_Rim3DSleep.reportString>отдыхает в кровати.</Recovery_Rim3DSleep.reportString>
+</LanguageData>

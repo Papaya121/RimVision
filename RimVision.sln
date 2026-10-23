@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rim3D", "Source\RimVision\Rim3D.csproj", "{C87E6801-6E97-4BCE-A6F9-608A6E151A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rim3D.Multiplayer", "Source\Multiplayer\Rim3D.Multiplayer.csproj", "{3542E62D-E7B6-44E5-83BF-3A3E9B55F5AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rim3D.Compatibility", "Source\Compatibility\Rim3D.Compatibility.csproj", "{8D9A237D-CE22-4CFB-933B-687825FDD311}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimVision.ThirdPerson", "Source\ThirdPerson\RimVision.ThirdPerson.csproj", "{7806D95B-54D4-4A89-8D7A-341312F6525C}"
+EndProject
+Global
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        Debug|Any CPU = Debug|Any CPU
+        Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        {C87E6801-6E97-4BCE-A6F9-608A6E151A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {C87E6801-6E97-4BCE-A6F9-608A6E151A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {C87E6801-6E97-4BCE-A6F9-608A6E151A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {C87E6801-6E97-4BCE-A6F9-608A6E151A81}.Release|Any CPU.Build.0 = Release|Any CPU
+        {3542E62D-E7B6-44E5-83BF-3A3E9B55F5AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {3542E62D-E7B6-44E5-83BF-3A3E9B55F5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {3542E62D-E7B6-44E5-83BF-3A3E9B55F5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {3542E62D-E7B6-44E5-83BF-3A3E9B55F5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+        {8D9A237D-CE22-4CFB-933B-687825FDD311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {8D9A237D-CE22-4CFB-933B-687825FDD311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {8D9A237D-CE22-4CFB-933B-687825FDD311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {8D9A237D-CE22-4CFB-933B-687825FDD311}.Release|Any CPU.Build.0 = Release|Any CPU
+        {7806D95B-54D4-4A89-8D7A-341312F6525C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {7806D95B-54D4-4A89-8D7A-341312F6525C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {7806D95B-54D4-4A89-8D7A-341312F6525C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {7806D95B-54D4-4A89-8D7A-341312F6525C}.Release|Any CPU.Build.0 = Release|Any CPU
+    EndGlobalSection
+EndGlobal

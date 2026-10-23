@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Recovery_Rim3DResearch.reportString>researching.</Recovery_Rim3DResearch.reportString>
+  <Recovery_Rim3DBuild.reportString>building TargetA.</Recovery_Rim3DBuild.reportString>
+  <Recovery_Rim3DIngest.reportString>consuming TargetA.</Recovery_Rim3DIngest.reportString>
+  <Recovery_Rim3DControl.reportString>controlled by the player in 3D.</Recovery_Rim3DControl.reportString>
+  <Recovery_Rim3DSleep.reportString>resting in bed.</Recovery_Rim3DSleep.reportString>
+</LanguageData>

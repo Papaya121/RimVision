@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>Recovery_Rim3DResearch</defName>
+    <driverClass>Recovery.Rim3D.JobDriver_Rim3DResearch, Recovery.Rim3D</driverClass>
+    <reportString>researching.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>Recovery_Rim3DTend</defName>
+    <driverClass>Recovery.Rim3D.JobDriver_Rim3DTend, Recovery.Rim3D</driverClass>
+    <reportString>tending TargetA.</reportString>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <dropThingBeforeJob>false</dropThingBeforeJob>
+    <carryThingAfterJob>true</carryThingAfterJob>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+  <JobDef>
+    <defName>Recovery_Rim3DBuild</defName>
+    <driverClass>Recovery.Rim3D.JobDriver_Rim3DBuild, Recovery.Rim3D</driverClass>
+    <reportString>building TargetA.</reportString>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <dropThingBeforeJob>false</dropThingBeforeJob>
+    <carryThingAfterJob>true</carryThingAfterJob>
+  </JobDef>
+  <JobDef>
+    <defName>Recovery_Rim3DIngest</defName>
+    <driverClass>Recovery.Rim3D.JobDriver_Rim3DIngest, Recovery.Rim3D</driverClass>
+    <reportString>consuming TargetA.</reportString>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>Recovery_Rim3DControl</defName>
+    <driverClass>Recovery.Rim3D.JobDriver_Rim3DControl, Recovery.Rim3D</driverClass>
+    <reportString>controlled by the player in 3D.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <suspendable>false</suspendable>
+    <sleepCanInterrupt>false</sleepCanInterrupt>
+    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+    <dropThingBeforeJob>false</dropThingBeforeJob>
+    <carryThingAfterJob>true</carryThingAfterJob>
+    <alwaysShowWeapon>false</alwaysShowWeapon>
+    <neverFleeFromEnemies>true</neverFleeFromEnemies>
+  </JobDef>
+  <JobDef>
+    <defName>Recovery_Rim3DSleep</defName>
+    <driverClass>Recovery.Rim3D.JobDriver_Rim3DSleep, Recovery.Rim3D</driverClass>
+    <reportString>resting in bed.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <suspendable>false</suspendable>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+    <neverShowWeapon>true</neverShowWeapon>
+    <dropThingBeforeJob>false</dropThingBeforeJob>
+    <carryThingAfterJob>true</carryThingAfterJob>
+  </JobDef>
+</Defs>

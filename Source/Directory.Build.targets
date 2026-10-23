@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Rim3D' Or '$(MSBuildProjectName)' == 'Rim3D.Multiplayer' Or '$(MSBuildProjectName)' == 'Rim3D.Compatibility'">
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>$([System.DateTime]::UtcNow.ToString('yyyy.MMdd.HHmm.ssfff'))</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
+  </PropertyGroup>
+</Project>

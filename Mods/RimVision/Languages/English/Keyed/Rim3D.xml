@@ -1,0 +1,699 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<LanguageData>
+  <Rim3D_LoadingView>Preparing 3D view</Rim3D_LoadingView>
+  <Rim3D_ActionCancelled>Action cancelled</Rim3D_ActionCancelled>
+  <Rim3D_ActionReservationFailed>Could not reserve the action target</Rim3D_ActionReservationFailed>
+  <Rim3D_ActionStartedHint>Action started · [[Movement]] / [[CancelAction]]: cancel</Rim3D_ActionStartedHint>
+  <Rim3D_ActionUnavailable>Action is no longer available – reopen the menu</Rim3D_ActionUnavailable>
+  <Rim3D_AddRecipeHint>First add a recipe via RMB → Recipes and bills</Rim3D_AddRecipeHint>
+  <Rim3D_AimActionHint> · [[Interact]]: action · RMB: actions</Rim3D_AimActionHint>
+  <Rim3D_AimBedHint> · [[Interact]]: sleep · [[Movement]]: stand up</Rim3D_AimBedHint>
+  <Rim3D_AimBlueprint>Aim at a blueprint or unfinished construction</Rim3D_AimBlueprint>
+  <Rim3D_AimBlueprintHint> · [[Interact]]: deliver resources · [[Interact]]: build · [[CancelPlan]]: cancel</Rim3D_AimBlueprintHint>
+  <Rim3D_AimBuildRange>Aim at a construction site within 12 cells</Rim3D_AimBuildRange>
+  <Rim3D_AimInteractionHint>Aim at a tree, rock, item or construction site</Rim3D_AimInteractionHint>
+  <Rim3D_AimItemHint> · [[Interact]]: entire stack · hold [[Interact]]: amount</Rim3D_AimItemHint>
+  <Rim3D_AimSingleItemHint> · [[Interact]]: take</Rim3D_AimSingleItemHint>
+  <Rim3D_AimMeleeHint>Aim at a target to strike</Rim3D_AimMeleeHint>
+  <Rim3D_AimPlantHint> · [[Interact]]: harvest · RMB: actions</Rim3D_AimPlantHint>
+  <Rim3D_AimSkill>{0} · level {1}/20</Rim3D_AimSkill>
+  <Rim3D_AimTargetIndex> · [[NextTarget]]: target {0}/{1}</Rim3D_AimTargetIndex>
+  <Rim3D_AimWorkTableHint> · [[Interact]]: work · RMB: recipes and actions</Rim3D_AimWorkTableHint>
+  <Rim3D_AllCategories>All</Rim3D_AllCategories>
+  <Rim3D_ApparelHeading>APPAREL AND ARMOR · {0}</Rim3D_ApparelHeading>
+  <Rim3D_BedSleepUnavailable>This bed is unavailable for sleeping</Rim3D_BedSleepUnavailable>
+  <Rim3D_BedUnavailable>Bed is unavailable</Rim3D_BedUnavailable>
+  <Rim3D_BillHelp>Add a recipe and set the amount · Esc: close</Rim3D_BillHelp>
+  <Rim3D_BillStackFull>Bill list is full: remove an unwanted bill via RMB → Recipes and bills</Rim3D_BillStackFull>
+  <Rim3D_Bills>Recipes and bills…</Rim3D_Bills>
+  <Rim3D_BillsOwnBuildings>Bills are only available for colony buildings</Rim3D_BillsOwnBuildings>
+  <Rim3D_BillsTitle>{0} · Bills</Rim3D_BillsTitle>
+  <Rim3D_BlueprintPlaced>Blueprint placed · RMB: actions · [[Interact]]: build · [[CancelPlan]]: cancel blueprint · [[CancelAction]] / RMB: put tool away</Rim3D_BlueprintPlaced>
+  <Rim3D_Build>Build</Rim3D_Build>
+  <Rim3D_BuildCancelled>Construction cancelled · delivered materials returned</Rim3D_BuildCancelled>
+  <Rim3D_BuildCellOccupied>Construction site is occupied: {0}</Rim3D_BuildCellOccupied>
+  <Rim3D_BuildFinished>Construction finished or blueprint cancelled</Rim3D_BuildFinished>
+  <Rim3D_BuildMaterial>Material: {0} →</Rim3D_BuildMaterial>
+  <Rim3D_BuildMaterialRightClick>Right-click to choose the construction material.</Rim3D_BuildMaterialRightClick>
+  <Rim3D_BuildMenu>Construction · [[Construction]] / Esc: close</Rim3D_BuildMenu>
+  <Rim3D_BuildProgress>Construction {0}% · [[Interact]]: build</Rim3D_BuildProgress>
+  <Rim3D_BuildRoof>Build roof</Rim3D_BuildRoof>
+  <Rim3D_BuildingHint>Building · [[Movement]] / [[CancelAction]]: cancel</Rim3D_BuildingHint>
+  <Rim3D_Cancel>Cancel</Rim3D_Cancel>
+  <Rim3D_CancelOwnBlueprints>You can only cancel your own blueprints</Rim3D_CancelOwnBlueprints>
+  <Rim3D_CancelPlan>Cancel blueprint</Rim3D_CancelPlan>
+  <Rim3D_CannotBuildHere>Cannot build here</Rim3D_CannotBuildHere>
+  <Rim3D_CannotBuildNow>Pawn cannot build right now</Rim3D_CannotBuildNow>
+  <Rim3D_CannotChangeEquipment>Cannot change equipment right now</Rim3D_CannotChangeEquipment>
+  <Rim3D_CannotDeconstructNow>Cannot deconstruct this object right now</Rim3D_CannotDeconstructNow>
+  <Rim3D_CannotDoRecipe>Pawn cannot perform this recipe</Rim3D_CannotDoRecipe>
+  <Rim3D_CannotEat>Cannot eat this food right now</Rim3D_CannotEat>
+  <Rim3D_CannotEquip>{0}: cannot equip · items stayed in place</Rim3D_CannotEquip>
+  <Rim3D_CannotMineNow>Cannot mine this rock right now</Rim3D_CannotMineNow>
+  <Rim3D_CannotRepair>This object cannot be repaired</Rim3D_CannotRepair>
+  <Rim3D_CannotSleepNow>Pawn cannot sleep right now</Rim3D_CannotSleepNow>
+  <Rim3D_CellUnavailable>Cell is unavailable</Rim3D_CellUnavailable>
+  <Rim3D_CharacterSummary>Health {0}% · Esc: close</Rim3D_CharacterSummary>
+  <Rim3D_CharacterSummaryMood>Health {0}% · Mood {1}% · Esc: close</Rim3D_CharacterSummaryMood>
+  <Rim3D_ChooseCount>Choose amount…</Rim3D_ChooseCount>
+  <Rim3D_Close>Close</Rim3D_Close>
+  <Rim3D_CloseShortcut>Esc: close</Rim3D_CloseShortcut>
+  <Rim3D_Colony>COLONY</Rim3D_Colony>
+  <Rim3D_CombatCargoDropped>Dropped: {0} · no inventory space when entering combat</Rim3D_CombatCargoDropped>
+  <Rim3D_CombatCargoStored>Stored: {0} · hands freed for combat</Rim3D_CombatCargoStored>
+  <Rim3D_CombatDropFailed>Could not drop cargo: combat mode was not enabled</Rim3D_CombatDropFailed>
+  <Rim3D_CombatHud>COMBAT · LMB: fire · MMB: strike</Rim3D_CombatHud>
+  <Rim3D_CombatModeHint>Combat mode: LMB – attack, MMB – strike</Rim3D_CombatModeHint>
+  <Rim3D_ConstructionBlocked>Construction is blocked: site is occupied or materials are unavailable</Rim3D_ConstructionBlocked>
+  <Rim3D_ConsumeDrug>Consume</Rim3D_ConsumeDrug>
+  <Rim3D_ControlInterrupted>Control ended: pawn is unavailable or received another job</Rim3D_ControlInterrupted>
+  <Rim3D_ControlReleased>Control released</Rim3D_ControlReleased>
+  <Rim3D_ControlTransferFailed>Could not transfer control</Rim3D_ControlTransferFailed>
+  <Rim3D_ControlsLayout>[[Construction]]: close construction   ·   RMB: close actions   ·   [[Character]]: character and inventory   ·   [[Movement]]: stand up   ·   [[Sprint]]: run   ·   [[Sneak]]: sneak   ·   [[Cursor]]: cursor   ·   [[Pause]]: resume   ·   [[Combat]]: combat mode   ·   [[CancelAction]]: cancel action   ·   [[RotateOrSwap]]: rotate building   ·   RMB: put tool away   ·   Esc: put tool away   ·   LMB: place blueprint   ·   [[NextTarget]]: next target under crosshair   ·   [[RotateOrSwap]]: hands ↔ weapon   ·   [[UseItem]]: use held item   ·   [[ItemActions]]: held item actions   ·   [[CancelPlan]]: cancel blueprint   ·   [[Store]]: store in inventory   ·   [[Drop]]: drop held item   ·   [[Interact]]: take entire stack · hold [[Interact]]: amount   ·   [[Interact]]: build   ·   [[Interact]]: deliver held resources   ·   [[Interact]]: work or choose recipe   ·   MMB: approach and strike   ·   LMB: melee attack   ·   [[Perspective]]: first person   ·   [[NextPawn]]: next colonist   ·   [[Plans]]: show/hide construction plans   ·   [[Toggle3D]] / Esc: return to 2D</Rim3D_ControlsLayout>
+  <Rim3D_CutPlant>Cut plant</Rim3D_CutPlant>
+  <Rim3D_CutTree>Chop tree</Rim3D_CutTree>
+  <Rim3D_Dead>Dead</Rim3D_Dead>
+  <Rim3D_Deconstruct>Deconstruct building</Rim3D_Deconstruct>
+  <Rim3D_ClaimBuilding>Claim building</Rim3D_ClaimBuilding>
+  <Rim3D_BuildingClaimed>Building claimed</Rim3D_BuildingClaimed>
+  <Rim3D_DeliverFirstHint>Deliver all resources first: [[Interact]] with the required stack in hands</Rim3D_DeliverFirstHint>
+  <Rim3D_DeliverResources>Deliver resources from hands</Rim3D_DeliverResources>
+  <Rim3D_DeliveredResources>Delivered: {0} ×{1}</Rim3D_DeliveredResources>
+  <Rim3D_DoBills>Do bills</Rim3D_DoBills>
+  <Rim3D_DoorOpening>Door is opening</Rim3D_DoorOpening>
+  <Rim3D_Downed>Downed</Rim3D_Downed>
+  <Rim3D_Drop>Drop</Rim3D_Drop>
+  <Rim3D_DropFromEquipment>Dropped from equipment: {0}</Rim3D_DropFromEquipment>
+  <Rim3D_DropFromHands>Dropped from hands: {0}</Rim3D_DropFromHands>
+  <Rim3D_DropFromInventory>Dropped from inventory: {0}</Rim3D_DropFromInventory>
+  <Rim3D_DropHeld>Drop held item on ground</Rim3D_DropHeld>
+  <Rim3D_DropWeapon>Drop weapon</Rim3D_DropWeapon>
+  <Rim3D_Durability>Durability: {0} / {1}</Rim3D_Durability>
+  <Rim3D_ComfortTemperature>Comfortable temperature: {0} – {1}</Rim3D_ComfortTemperature>
+  <Rim3D_RemoveApparel>Remove</Rim3D_RemoveApparel>
+  <Rim3D_RemovedApparel>Removed and dropped: {0}</Rim3D_RemovedApparel>
+  <Rim3D_Eat>Eat</Rim3D_Eat>
+  <Rim3D_EatingHint>Eating · [[Movement]] / [[CancelAction]]: cancel</Rim3D_EatingHint>
+  <Rim3D_Empty>empty</Rim3D_Empty>
+  <Rim3D_EmptyInventory>Inventory is empty</Rim3D_EmptyInventory>
+  <Rim3D_EquipHint>Equip weapon · then [[Combat]]: combat mode</Rim3D_EquipHint>
+  <Rim3D_EquipOverweight>Not enough carrying capacity to equip</Rim3D_EquipOverweight>
+  <Rim3D_EquipWeapon>Equip weapon</Rim3D_EquipWeapon>
+  <Rim3D_FriendlyAttackHint>Enter combat mode to attack a friendly target: [[Combat]]</Rim3D_FriendlyAttackHint>
+  <Rim3D_HandsFree>Hands are empty</Rim3D_HandsFree>
+  <Rim3D_HandsHeading>IN HANDS</Rim3D_HandsHeading>
+  <Rim3D_HandsOccupied>Hands are occupied</Rim3D_HandsOccupied>
+  <Rim3D_HandsOccupiedHint>Hands are occupied · [[Drop]]: drop carried item</Rim3D_HandsOccupiedHint>
+  <Rim3D_Harvest>Harvest</Rim3D_Harvest>
+  <Rim3D_HealthHud>Health {0}% · Pain {1}% · {2}</Rim3D_HealthHud>
+  <Rim3D_HintBuild>[[Interact]]: build</Rim3D_HintBuild>
+  <Rim3D_HintCameraFast>[[Sprint]]: faster</Rim3D_HintCameraFast>
+  <Rim3D_HintCameraMove>[[Movement]]: move camera</Rim3D_HintCameraMove>
+  <Rim3D_HintCameraReset>[[ResetCamera]]: reset view</Rim3D_HintCameraReset>
+  <Rim3D_HintCameraRotate>RMB: rotate</Rim3D_HintCameraRotate>
+  <Rim3D_HintCameraZoom>Scroll wheel: zoom</Rim3D_HintCameraZoom>
+  <Rim3D_HintCancelAction>[[CancelAction]]: cancel action</Rim3D_HintCancelAction>
+  <Rim3D_HintCancelBlueprint>[[CancelPlan]]: cancel blueprint</Rim3D_HintCancelBlueprint>
+  <Rim3D_HintCharacterMenus>[[Character]]: character and inventory</Rim3D_HintCharacterMenus>
+  <Rim3D_HintCloseActions>RMB: close actions</Rim3D_HintCloseActions>
+  <Rim3D_HintCloseConstruction>[[Construction]]: close construction</Rim3D_HintCloseConstruction>
+  <Rim3D_HintCloseInventory>Esc: close · [[Character]]: inventory</Rim3D_HintCloseInventory>
+  <Rim3D_HintCloseMenu>Esc: close menu</Rim3D_HintCloseMenu>
+  <Rim3D_HintCursor>[[Cursor]]: cursor</Rim3D_HintCursor>
+  <Rim3D_HintDeliver>[[Interact]]: deliver held resources</Rim3D_HintDeliver>
+  <Rim3D_HintDropItem>[[Drop]]: drop held item</Rim3D_HintDropItem>
+  <Rim3D_HintEnterCombat>[[Combat]]: combat mode</Rim3D_HintEnterCombat>
+  <Rim3D_HintFirstPerson>[[Perspective]]: first person</Rim3D_HintFirstPerson>
+  <Rim3D_HintLeaveCombat>[[Combat]]: leave combat mode</Rim3D_HintLeaveCombat>
+  <Rim3D_HintMelee>MMB: approach and strike</Rim3D_HintMelee>
+  <Rim3D_HintMeleeAttack>LMB: melee attack</Rim3D_HintMeleeAttack>
+  <Rim3D_HintNextColonist>[[NextPawn]]: next colonist</Rim3D_HintNextColonist>
+  <Rim3D_HintTogglePlans>[[Plans]]: show/hide construction plans</Rim3D_HintTogglePlans>
+  <Rim3D_PlansHidden>Construction plans hidden · [[Plans]]: show</Rim3D_PlansHidden>
+  <Rim3D_HintNextTarget>[[NextTarget]]: next target under crosshair</Rim3D_HintNextTarget>
+  <Rim3D_HintOpenConstruction>[[Construction]]: construction</Rim3D_HintOpenConstruction>
+  <Rim3D_HintOverview>[[Perspective]]: overview</Rim3D_HintOverview>
+  <Rim3D_HintPause>[[Pause]]: pause</Rim3D_HintPause>
+  <Rim3D_HintPlaceBlueprint>LMB: place blueprint</Rim3D_HintPlaceBlueprint>
+  <Rim3D_HintPutToolAwayEscape>Esc: put tool away</Rim3D_HintPutToolAwayEscape>
+  <Rim3D_HintPutToolAwayMouse>RMB: put tool away</Rim3D_HintPutToolAwayMouse>
+  <Rim3D_HintRecipes>RMB: recipes and bills</Rim3D_HintRecipes>
+  <Rim3D_HintResume>[[Pause]]: resume</Rim3D_HintResume>
+  <Rim3D_HintReturn2D>[[Toggle3D]]: return to 2D</Rim3D_HintReturn2D>
+  <Rim3D_HintReturn2DEscape>[[Toggle3D]] / Esc: return to 2D</Rim3D_HintReturn2DEscape>
+  <Rim3D_HintRoof>[[Interact]]: build roof</Rim3D_HintRoof>
+  <Rim3D_HintRotateBuilding>[[RotateOrSwap]]: rotate building</Rim3D_HintRotateBuilding>
+  <Rim3D_HintRun>[[Sprint]]: run</Rim3D_HintRun>
+  <Rim3D_HintSearch>Type: search buildings · Esc: close search and menu</Rim3D_HintSearch>
+  <Rim3D_HintShoot>LMB: fire</Rim3D_HintShoot>
+  <Rim3D_HintSleep>[[Interact]]: sleep</Rim3D_HintSleep>
+  <Rim3D_HintSneak>[[Sneak]]: sneak</Rim3D_HintSneak>
+  <Rim3D_HintStandUp>[[Movement]]: stand up</Rim3D_HintStandUp>
+  <Rim3D_HintStatusTabs>[[Character]] / Esc: close · click tabs to switch</Rim3D_HintStatusTabs>
+  <Rim3D_HintStoreItem>[[Store]]: store in inventory</Rim3D_HintStoreItem>
+  <Rim3D_HintSwapHands>[[RotateOrSwap]]: hands ↔ weapon</Rim3D_HintSwapHands>
+  <Rim3D_HintTakeStack>[[Interact]]: take entire stack · hold [[Interact]]: amount</Rim3D_HintTakeStack>
+  <Rim3D_HintTakeItem>[[Interact]]: take</Rim3D_HintTakeItem>
+  <Rim3D_HintTargetAction>[[Interact]]: target action</Rim3D_HintTargetAction>
+  <Rim3D_HintTargetActions>RMB: target actions</Rim3D_HintTargetActions>
+  <Rim3D_HintWalk>[[Movement]]: walk</Rim3D_HintWalk>
+  <Rim3D_HintWindowCursor>Cursor: interact with the open window</Rim3D_HintWindowCursor>
+  <Rim3D_HintWork>[[Interact]]: work or choose recipe</Rim3D_HintWork>
+  <Rim3D_HoldingHint>In hands: {0} · [[Drop]]: drop</Rim3D_HoldingHint>
+  <Rim3D_HoldingItem>In hands: {0}</Rim3D_HoldingItem>
+  <Rim3D_HudEmptyHands>Hands: empty</Rim3D_HudEmptyHands>
+  <Rim3D_HudNoWeapon>Unarmed</Rim3D_HudNoWeapon>
+  <Rim3D_IngredientDropped>Ingredient left on the ground: {0}</Rim3D_IngredientDropped>
+  <Rim3D_InventoryHeading>INVENTORY · {0}</Rim3D_InventoryHeading>
+  <Rim3D_InventoryMass>Mass: {0} / {1} kg</Rim3D_InventoryMass>
+  <Rim3D_InventoryOverweight>Not enough inventory carrying capacity</Rim3D_InventoryOverweight>
+  <Rim3D_ItemReserved>Item is reserved by another pawn</Rim3D_ItemReserved>
+  <Rim3D_MakeStyled>Make: {0}</Rim3D_MakeStyled>
+  <Rim3D_ManualControl>Control: [[Movement]]</Rim3D_ManualControl>
+  <Rim3D_MaterialsProgress>Materials {0}/{1}</Rim3D_MaterialsProgress>
+  <Rim3D_Melee>Approach and attack</Rim3D_Melee>
+  <Rim3D_MeleeStartedHint>Approach and strike · [[Movement]] / [[CancelAction]]: cancel</Rim3D_MeleeStartedHint>
+  <Rim3D_Mine>Mine</Rim3D_Mine>
+  <Rim3D_SmoothWall>Smooth wall</Rim3D_SmoothWall>
+  <Rim3D_MissingCapacity>Pawn cannot perform this action: {0}</Rim3D_MissingCapacity>
+  <Rim3D_MissingResources>Missing resources: {0} · [[Interact]]: deliver from hands</Rim3D_MissingResources>
+  <Rim3D_MoveCloserToItem>Move closer to the item</Rim3D_MoveCloserToItem>
+  <Rim3D_MoveCloserToProject>Move closer to the construction site</Rim3D_MoveCloserToProject>
+  <Rim3D_MultiplayerControlEnded>Manual control ended</Rim3D_MultiplayerControlEnded>
+  <Rim3D_MultiplayerControlFailed>Could not take control: pawn is busy or unavailable</Rim3D_MultiplayerControlFailed>
+  <Rim3D_MultiplayerOwner>This pawn is already controlled by {0}</Rim3D_MultiplayerOwner>
+  <Rim3D_MultiplayerWaiting>Waiting for Multiplayer command</Rim3D_MultiplayerWaiting>
+  <Rim3D_NoApparel>No apparel worn</Rim3D_NoApparel>
+  <Rim3D_NoControlledPawn>No available character under manual control</Rim3D_NoControlledPawn>
+  <Rim3D_NoCurrentAction>No current action</Rim3D_NoCurrentAction>
+  <Rim3D_NoDropSpace>No room nearby to drop the item</Rim3D_NoDropSpace>
+  <Rim3D_NoIngredientSpace>No room for the ingredient at the work table</Rim3D_NoIngredientSpace>
+  <Rim3D_NoNeeds>This character has no needs.</Rim3D_NoNeeds>
+  <Rim3D_NoProjectile>Weapon has no available projectile</Rim3D_NoProjectile>
+  <Rim3D_NoQuickAction>No quick action available for this object</Rim3D_NoQuickAction>
+  <Rim3D_NoRecipes>No recipes available</Rim3D_NoRecipes>
+  <Rim3D_NoRelations>Social relationships are unavailable.</Rim3D_NoRelations>
+  <Rim3D_NoSearchResults>Nothing found</Rim3D_NoSearchResults>
+  <Rim3D_NoStorage>No available storage for this item</Rim3D_NoStorage>
+  <Rim3D_NoSuitableBill>No suitable bill for this work table and character</Rim3D_NoSuitableBill>
+  <Rim3D_NoUnlockedRecipes>No unlocked recipes for this work object</Rim3D_NoUnlockedRecipes>
+  <Rim3D_NoWeapon>No weapon equipped</Rim3D_NoWeapon>
+  <Rim3D_NoWeaponDropSpace>No room nearby to drop the weapon</Rim3D_NoWeaponDropSpace>
+  <Rim3D_NoWeaponInventory>No inventory available for the remaining weapon</Rim3D_NoWeaponInventory>
+  <Rim3D_NoWorkForAction>No work available for the selected action</Rim3D_NoWorkForAction>
+  <Rim3D_Research>Research</Rim3D_Research>
+  <Rim3D_NoResearchProject>Select a project in the Research tab</Rim3D_NoResearchProject>
+  <Rim3D_ResearchBenchUnavailable>This project requires a suitable powered research bench and linked research facilities</Rim3D_ResearchBenchUnavailable>
+  <Rim3D_PassageBlocked>Passage is blocked</Rim3D_PassageBlocked>
+  <Rim3D_PawnActions>Character actions</Rim3D_PawnActions>
+  <Rim3D_PawnCannotStand>Character cannot stand up</Rim3D_PawnCannotStand>
+  <Rim3D_PawnControlLost>Character is no longer available for manual control</Rim3D_PawnControlLost>
+  <Rim3D_PawnDead>Character is dead</Rim3D_PawnDead>
+  <Rim3D_PawnMentalBreak>Character is having a mental break</Rim3D_PawnMentalBreak>
+  <Rim3D_PawnRendererIncompatible>Incompatible pawn renderer version</Rim3D_PawnRendererIncompatible>
+  <Rim3D_PawnSleepingHint>Character is sleeping · [[Movement]]: stand up</Rim3D_PawnSleepingHint>
+  <Rim3D_PawnUnavailable>Pawn is unavailable for control</Rim3D_PawnUnavailable>
+  <Rim3D_PawnUninterruptible>Pawn's current action cannot be interrupted</Rim3D_PawnUninterruptible>
+  <Rim3D_PeacefulMode>Peaceful mode</Rim3D_PeacefulMode>
+  <Rim3D_BedOwners>Owners: {0}</Rim3D_BedOwners>
+  <Rim3D_BedUnowned>Unassigned bed</Rim3D_BedUnowned>
+  <Rim3D_PlacementClosed>Placement closed · [[CancelPlan]] on blueprint: cancel</Rim3D_PlacementClosed>
+  <Rim3D_PlacementHint>LMB: place blueprint · [[RotateOrSwap]]: rotate · [[Construction]]: material/building · [[CancelAction]]: cancel</Rim3D_PlacementHint>
+  <Rim3D_WallPlacementHint>Hold and drag LMB: line or perimeter · Release: place blueprints · RMB / [[CancelAction]]: cancel</Rim3D_WallPlacementHint>
+  <Rim3D_FloorPlacementHint>Hold and drag LMB: filled rectangle · Release: place blueprints · RMB / [[CancelAction]]: cancel</Rim3D_FloorPlacementHint>
+  <Rim3D_ConduitPlacementHint>Hold and drag LMB: straight line along one axis · Release: place blueprints · RMB / [[CancelAction]]: cancel</Rim3D_ConduitPlacementHint>
+  <Rim3D_PlacementHudHint> · LMB / [[RotateOrSwap]] / [[CancelAction]]</Rim3D_PlacementHudHint>
+  <Rim3D_PlantBlighted>Blighted</Rim3D_PlantBlighted>
+  <Rim3D_PlantBlightedHint>Plant is blighted · RMB: cut</Rim3D_PlantBlightedHint>
+  <Rim3D_PlantNoHarvest>No harvest</Rim3D_PlantNoHarvest>
+  <Rim3D_PlantNoHarvestHint>This plant has no harvest · RMB: cut</Rim3D_PlantNoHarvestHint>
+  <Rim3D_PlantNotReady>Plant is not ready to harvest yet</Rim3D_PlantNotReady>
+  <Rim3D_PlantReady>Ready to harvest</Rim3D_PlantReady>
+  <Rim3D_PlantSummary>Growth: {0}% · {1}</Rim3D_PlantSummary>
+  <Rim3D_PlantUnripe>Not mature yet</Rim3D_PlantUnripe>
+  <Rim3D_PreviousWeaponDropped>Previous weapon dropped: {0}</Rim3D_PreviousWeaponDropped>
+  <Rim3D_RecipeGone>Recipe is no longer available</Rim3D_RecipeGone>
+  <Rim3D_ReloadBuildJob>Restart Play to load manual construction</Rim3D_ReloadBuildJob>
+  <Rim3D_ReloadControlJob>Restart Play to load the RimVision job</Rim3D_ReloadControlJob>
+  <Rim3D_ReloadIngestJob>Restart Play to load the ingestion job</Rim3D_ReloadIngestJob>
+  <Rim3D_ReloadSleepJob>Restart Play to load the sleep job</Rim3D_ReloadSleepJob>
+  <Rim3D_Repair>Repair</Rim3D_Repair>
+  <Rim3D_RepairDeconstructConflict>Object is marked for deconstruction – cancel it before repairing</Rim3D_RepairDeconstructConflict>
+  <Rim3D_RepairNotNeeded>No repairs needed: object is undamaged</Rim3D_RepairNotNeeded>
+  <Rim3D_RequiresMechanitor>This recipe requires a mechanitor</Rim3D_RequiresMechanitor>
+  <Rim3D_Roof>Roof</Rim3D_Roof>
+  <Rim3D_RemoveRoof>Remove roof</Rim3D_RemoveRoof>
+  <Rim3D_RoofBuilt>Roof built</Rim3D_RoofBuilt>
+  <Rim3D_RoofPlantBlocked>A plant is blocking the roof</Rim3D_RoofPlantBlocked>
+  <Rim3D_SkillDisabled>\nAutomatic work using this skill is unavailable</Rim3D_SkillDisabled>
+  <Rim3D_SkillExperience>\nExperience: {0} / {1}</Rim3D_SkillExperience>
+  <Rim3D_SkillTooLow>Insufficient skill: {0} {1}/{2}</Rim3D_SkillTooLow>
+  <Rim3D_SkillUnavailable>Skill is unavailable to this pawn: {0}</Rim3D_SkillUnavailable>
+  <Rim3D_SkillsHeading>SKILLS · level / 20</Rim3D_SkillsHeading>
+  <Rim3D_Sleep>Go to sleep</Rim3D_Sleep>
+  <Rim3D_SleepOrdered>Pawn ordered to sleep</Rim3D_SleepOrdered>
+  <Rim3D_SlotsEmpty>Hands and weapon slot are already empty</Rim3D_SlotsEmpty>
+  <Rim3D_Sneaking>SNEAKING</Rim3D_Sneaking>
+  <Rim3D_Sprinting>RUNNING</Rim3D_Sprinting>
+  <Rim3D_StandToEat>Stand up before eating</Rim3D_StandToEat>
+  <Rim3D_StandUpHint>Start moving to stand up</Rim3D_StandUpHint>
+  <Rim3D_StartActionFailed>Could not start action: path, reservation or pawn restrictions</Rim3D_StartActionFailed>
+  <Rim3D_StartBuildingHint> · [[Interact]]: start building</Rim3D_StartBuildingHint>
+  <Rim3D_StoreHeld>Store held item in inventory</Rim3D_StoreHeld>
+  <Rim3D_StoreIncomplete>Could not store the entire stack in inventory</Rim3D_StoreIncomplete>
+  <Rim3D_StoreRemainderFailed>Could not store the remaining stack · swap cancelled</Rim3D_StoreRemainderFailed>
+  <Rim3D_StoreShortcut>Store in inventory ([[Store]])</Rim3D_StoreShortcut>
+  <Rim3D_StoredItem>Stored in inventory: {0}</Rim3D_StoredItem>
+  <Rim3D_StoredRemainder>Remaining stack stored in inventory: {0}</Rim3D_StoredRemainder>
+  <Rim3D_SwapFailed>Could not move the weapon · swap cancelled</Rim3D_SwapFailed>
+  <Rim3D_SwapHands>Swap with hands ([[RotateOrSwap]])</Rim3D_SwapHands>
+  <Rim3D_SwapOverweight>Not enough carrying capacity to swap · items stayed in place</Rim3D_SwapOverweight>
+  <Rim3D_SwapResult>In hands: {0} · Equipped: {1}</Rim3D_SwapResult>
+  <Rim3D_SwapWeapon>Swap with weapon ([[RotateOrSwap]])</Rim3D_SwapWeapon>
+  <Rim3D_TabAssign>Assign</Rim3D_TabAssign>
+  <Rim3D_TabHealth>Health</Rim3D_TabHealth>
+  <Rim3D_TabInventory>Inventory</Rim3D_TabInventory>
+  <Rim3D_TabMood>Mood</Rim3D_TabMood>
+  <Rim3D_TabQuests>Quests</Rim3D_TabQuests>
+  <Rim3D_TabResearch>Research</Rim3D_TabResearch>
+  <Rim3D_TabSkills>Skills</Rim3D_TabSkills>
+  <Rim3D_TabSocial>Social</Rim3D_TabSocial>
+  <Rim3D_TabWork>Work</Rim3D_TabWork>
+  <Rim3D_Take>Take</Rim3D_Take>
+  <Rim3D_TakeCount>Take: {0} / {1}</Rim3D_TakeCount>
+  <Rim3D_TakeFailed>Could not pick up the item</Rim3D_TakeFailed>
+  <Rim3D_TakeInHands>Take in hands</Rim3D_TakeInHands>
+  <Rim3D_TakeStack>Take in hands · {0} items</Rim3D_TakeStack>
+  <Rim3D_TakeWeaponFailed>Could not take the weapon from hands</Rim3D_TakeWeaponFailed>
+  <Rim3D_TargetBurning>Object is burning – extinguish the fire first</Rim3D_TargetBurning>
+  <Rim3D_TargetFogged>Object is hidden by fog of war</Rim3D_TargetFogged>
+  <Rim3D_TargetForbidden>Object is forbidden – unforbid it first</Rim3D_TargetForbidden>
+  <Rim3D_TargetGone>Object is no longer available</Rim3D_TargetGone>
+  <Rim3D_TargetNotOwned>Object does not belong to your colony</Rim3D_TargetNotOwned>
+  <Rim3D_TargetOutOfRange>Target is out of weapon range</Rim3D_TargetOutOfRange>
+  <Rim3D_TargetReserved>Object is reserved by another character</Rim3D_TargetReserved>
+  <Rim3D_TargetUnreachable>Cannot reach the action site</Rim3D_TargetUnreachable>
+  <Rim3D_ThickRoof>Cannot remove thick mountain roof</Rim3D_ThickRoof>
+  <Rim3D_Walking>WALKING</Rim3D_Walking>
+  <Rim3D_WallTorchPlacementHint>Aim at a wall side · LMB: place torch · [[CancelAction]]: cancel</Rim3D_WallTorchPlacementHint>
+  <Rim3D_WallLampPlacementHint>Aim at a wall side · LMB: place lamp · [[CancelAction]]: cancel</Rim3D_WallLampPlacementHint>
+  <Rim3D_WeaponHeading>EQUIPPED WEAPON</Rim3D_WeaponHeading>
+  <Rim3D_WeaponNotReady>Weapon is not ready to fire</Rim3D_WeaponNotReady>
+  <Rim3D_WorkAtTable>Work at table</Rim3D_WorkAtTable>
+  <Rim3D_WorkObjectGone>Work object is no longer available</Rim3D_WorkObjectGone>
+  <Rim3D_WorkObjectUnavailable>Work object is unavailable or does not belong to the colony</Rim3D_WorkObjectUnavailable>
+  <Rim3D_WorkSkillDisabled>Pawn cannot perform this work: {0}</Rim3D_WorkSkillDisabled>
+  <Rim3D_WorkSpotReserved>Work table interaction spot is reserved</Rim3D_WorkSpotReserved>
+  <Rim3D_WorkTableBroken>Work table has broken down – repair it with components</Rim3D_WorkTableBroken>
+  <Rim3D_WorkTableNoFuel>No fuel: refuel the work object</Rim3D_WorkTableNoFuel>
+  <Rim3D_WorkTableNoPower>No power: connect and switch on the work table</Rim3D_WorkTableNoPower>
+  <Rim3D_WorkingHint>Working on bill · [[Movement]] / [[CancelAction]]: cancel</Rim3D_WorkingHint>
+  <Rim3D_WoundedHint>WOUNDED · [[Character]]: character – health and inventory</Rim3D_WoundedHint>
+  <Rim3D_WoundedSuffix> · WOUNDED</Rim3D_WoundedSuffix>
+  <Rim3D_WearHeld>Wear</Rim3D_WearHeld>
+  <Rim3D_ReadHeld>Read</Rim3D_ReadHeld>
+  <Rim3D_EquipHeld>Equip</Rim3D_EquipHeld>
+  <Rim3D_UseHeld>Use</Rim3D_UseHeld>
+  <Rim3D_HeldActions>Held item actions</Rim3D_HeldActions>
+  <Rim3D_EquipmentActions>Equipment actions ([[ItemActions]])</Rim3D_EquipmentActions>
+  <Rim3D_UseEquipment>Use</Rim3D_UseEquipment>
+  <Rim3D_EquipmentWarmup>Preparing: {0} · {1} s remaining</Rim3D_EquipmentWarmup>
+  <Rim3D_UseEquipmentActions>Use / abilities</Rim3D_UseEquipmentActions>
+  <Rim3D_NoEquipmentActions>No actions available for this equipment.</Rim3D_NoEquipmentActions>
+  <Rim3D_EquipmentCombatHint>No actions available. Combat commands require combat mode ([[Combat]]).</Rim3D_EquipmentCombatHint>
+  <Rim3D_HintEquipmentActions>[[ItemActions]]: equipment actions</Rim3D_HintEquipmentActions>
+  <Rim3D_HintUseHeld>[[UseItem]]: {0}</Rim3D_HintUseHeld>
+  <Rim3D_HintHeldActions>[[ItemActions]]: held item actions</Rim3D_HintHeldActions>
+  <Rim3D_ApproachManually>Approach the target manually to continue. [[CancelAction]]: cancel.</Rim3D_ApproachManually>
+  <Rim3D_ApproachingTarget>Approaching the target. [[CancelAction]]: cancel.</Rim3D_ApproachingTarget>
+  <Rim3D_SelectAimTarget>Aim at a target. LMB: select. RMB / Esc: cancel.</Rim3D_SelectAimTarget>
+  <Rim3D_AimPoint>Target under crosshair</Rim3D_AimPoint>
+  <Rim3D_InvalidAimTarget>Select a valid target</Rim3D_InvalidAimTarget>
+  <Rim3D_ObservationOnly>{0} – control unavailable. Following the character.</Rim3D_ObservationOnly>
+  <Rim3D_Incapacitated>Incapacitated</Rim3D_Incapacitated>
+  <Rim3D_ObservationControls>Observing · [[Plans]]: show/hide plans · [[NextPawn]]: next pawn · [[Perspective]]: overview · [[Toggle3D]]: exit 3D · [[Pause]]: pause · Esc: menu</Rim3D_ObservationControls>
+  <Rim3D_SettingsHint>Changes apply immediately and are saved when you close settings. Additional effects control weather particles, atmospheric fog, snow, flames, shadows, camera motion and status overlays. Gameplay and weather lighting remain unchanged.</Rim3D_SettingsHint>
+  <Rim3D_SettingsApplyHint>Changes apply immediately and are saved when you close settings.</Rim3D_SettingsApplyHint>
+  <Rim3D_SettingsTabGraphics>Graphics</Rim3D_SettingsTabGraphics>
+  <Rim3D_SettingsTabWorld>World</Rim3D_SettingsTabWorld>
+  <Rim3D_SettingsTabEffects>Effects</Rim3D_SettingsTabEffects>
+  <Rim3D_SettingsTabInterface>Interface</Rim3D_SettingsTabInterface>
+  <Rim3D_SettingsTabControls>Controls</Rim3D_SettingsTabControls>
+  <Rim3D_SettingsSectionQuality>Image quality</Rim3D_SettingsSectionQuality>
+  <Rim3D_SettingsSectionLighting>Lighting</Rim3D_SettingsSectionLighting>
+  <Rim3D_SettingsSectionModels>3D models</Rim3D_SettingsSectionModels>
+  <Rim3D_SettingsSectionMountains>Mountains</Rim3D_SettingsSectionMountains>
+  <Rim3D_SettingsSectionWeather>Weather and environment</Rim3D_SettingsSectionWeather>
+  <Rim3D_SettingsSectionCameraEffects>Camera motion</Rim3D_SettingsSectionCameraEffects>
+  <Rim3D_SettingsSectionStatus>Character condition</Rim3D_SettingsSectionStatus>
+  <Rim3D_SettingsSectionHud>Panels and hints</Rim3D_SettingsSectionHud>
+  <Rim3D_SettingsSectionFirstPerson>First-person view</Rim3D_SettingsSectionFirstPerson>
+  <Rim3D_SettingsSectionCamera>Camera and mouse</Rim3D_SettingsSectionCamera>
+  <Rim3D_SettingsSectionActions>Actions and movement</Rim3D_SettingsSectionActions>
+  <Rim3D_SettingVisualEffectsHint>The master switch controls the visual effects below. Individual preferences are preserved when it is off. Heartbeat sound is controlled separately.</Rim3D_SettingVisualEffectsHint>
+  <Rim3D_SettingsReset>Restore defaults</Rim3D_SettingsReset>
+  <Rim3D_SettingVisualEffects>Enable additional visual effects</Rim3D_SettingVisualEffects>
+  <Rim3D_SettingWeatherParticles>Rain, snow and dust particles</Rim3D_SettingWeatherParticles>
+  <Rim3D_SettingWeatherFog>Atmospheric fog and haze</Rim3D_SettingWeatherFog>
+  <Rim3D_SettingGroundSnow>Snow on the ground</Rim3D_SettingGroundSnow>
+  <Rim3D_SettingFireEffects>Flame effects</Rim3D_SettingFireEffects>
+  <Rim3D_SettingGroundShadows>Projected ground shadows</Rim3D_SettingGroundShadows>
+  <Rim3D_SettingAmbientOcclusion>Ambient occlusion</Rim3D_SettingAmbientOcclusion>
+  <Rim3D_SettingAmbientOcclusionIntensity>Ambient occlusion intensity: {0}%</Rim3D_SettingAmbientOcclusionIntensity>
+  <Rim3D_SettingNightBrightness>Night brightness: {0}%</Rim3D_SettingNightBrightness>
+  <Rim3D_SettingNightBrightnessHint>100% keeps the original darkness. Higher values brighten the 3D view at night without changing daytime lighting or gameplay.</Rim3D_SettingNightBrightnessHint>
+  <Rim3D_SettingCameraBob>Camera bob, breathing and sprint FOV</Rim3D_SettingCameraBob>
+  <Rim3D_SettingWalkCameraBobIntensity>Walking camera bob intensity: {0}%</Rim3D_SettingWalkCameraBobIntensity>
+  <Rim3D_SettingRunCameraBobIntensity>Running camera bob intensity: {0}%</Rim3D_SettingRunCameraBobIntensity>
+  <Rim3D_SettingDamageShake>Camera shake when injured</Rim3D_SettingDamageShake>
+  <Rim3D_SettingStatusEffects>Injury, hunger, fatigue and sleep overlays</Rim3D_SettingStatusEffects>
+  <Rim3D_SettingHungerEffectIntensity>Hunger screen effect intensity: {0}%</Rim3D_SettingHungerEffectIntensity>
+  <Rim3D_SettingSleepEffectIntensity>Fatigue and sleep screen effect intensity: {0}%</Rim3D_SettingSleepEffectIntensity>
+  <Rim3D_SettingPainEffectIntensity>Pain and injury screen effect intensity: {0}%</Rim3D_SettingPainEffectIntensity>
+  <Rim3D_SettingScarPainEffects>Include scar pain in the screen effect</Rim3D_SettingScarPainEffects>
+  <Rim3D_SettingFirstPersonItems>Show held items and weapons in first person</Rim3D_SettingFirstPersonItems>
+  <Rim3D_SettingFirstPersonHands>Show hands in first person</Rim3D_SettingFirstPersonHands>
+  <Rim3D_SettingHideInterface>Hide all 3D interface for screenshots</Rim3D_SettingHideInterface>
+  <Rim3D_SettingHideInterfaceHint>Hides panels, hints, crosshair, notifications and minigames, and fills the screen with the 3D view. F11 hides and restores the interface. You can also change this setting through the Escape menu.</Rim3D_SettingHideInterfaceHint>
+  <Rim3D_SettingCharacterHud>Show character portrait</Rim3D_SettingCharacterHud>
+  <Rim3D_SettingPortraitPawnSwitch>Switch pawns with Alt + click on a portrait</Rim3D_SettingPortraitPawnSwitch>
+  <Rim3D_SettingNeedsHud>Show needs panel</Rim3D_SettingNeedsHud>
+  <Rim3D_SettingResourceHud>Show resources on the left</Rim3D_SettingResourceHud>
+  <Rim3D_SettingAdditionalHudNeeds>Select additional needs for the panel</Rim3D_SettingAdditionalHudNeeds>
+  <Rim3D_AddHudNeed>Add: {0}</Rim3D_AddHudNeed>
+  <Rim3D_RemoveHudNeed>Remove: {0}</Rim3D_RemoveHudNeed>
+  <Rim3D_NoAdditionalHudNeeds>No additional needs</Rim3D_NoAdditionalHudNeeds>
+  <Rim3D_SettingBottomControls>Show controls help button</Rim3D_SettingBottomControls>
+  <Rim3D_SettingZoneOutlines>Show zone outlines</Rim3D_SettingZoneOutlines>
+  <Rim3D_SettingCrosshair>Show crosshair</Rim3D_SettingCrosshair>
+  <Rim3D_SettingCombatFeedback>Show shot and hit indicators</Rim3D_SettingCombatFeedback>
+  <Rim3D_SettingHeartbeat>Heartbeat sound</Rim3D_SettingHeartbeat>
+  <Rim3D_SettingAntiAliasing>Anti-aliasing (2x MSAA)</Rim3D_SettingAntiAliasing>
+  <Rim3D_SettingSimpleWater>Simple water</Rim3D_SettingSimpleWater>
+  <Rim3D_SettingPlantWind>Vegetation wind animation</Rim3D_SettingPlantWind>
+  <Rim3D_SettingPlantWindHint>Grass, bushes and trees sway with wind strength and weather. Disable to reduce GPU load.</Rim3D_SettingPlantWindHint>
+  <Rim3D_SettingSimpleWaterHint>Disables waves and ripples and simplifies the water surface to reduce rendering cost. Preserves color, lighting and smooth shorelines. Geometry updates gradually.</Rim3D_SettingSimpleWaterHint>
+  <Rim3D_SettingVanillaOutlines>Vanilla-style black outlines (3D view)</Rim3D_SettingVanillaOutlines>
+  <Rim3D_SettingOutlineType>Outline type: {0}</Rim3D_SettingOutlineType>
+  <Rim3D_OutlineTypeScreen>Screen contours</Rim3D_OutlineTypeScreen>
+  <Rim3D_OutlineTypeHull>Inverted black hull</Rim3D_OutlineTypeHull>
+  <Rim3D_SettingScreenOutlineWidth>Screen contour width: {0} px</Rim3D_SettingScreenOutlineWidth>
+  <Rim3D_SettingHullOutlineWidth>Black hull width: {0} px</Rim3D_SettingHullOutlineWidth>
+  <Rim3D_SettingInvertMouseY>Invert vertical mouse movement</Rim3D_SettingInvertMouseY>
+  <Rim3D_SettingRenderScale>3D render scale: {0}%</Rim3D_SettingRenderScale>
+  <Rim3D_SettingMaxPawnTextureResolution>Maximum pawn and animal capture resolution: {0} px</Rim3D_SettingMaxPawnTextureResolution>
+  <Rim3D_SettingMaxPawnTextureResolutionHint>Resolution follows body, clothing and other source textures. This limit caps the longest side of the capture; higher values use more video memory. Applies immediately.</Rim3D_SettingMaxPawnTextureResolutionHint>
+  <Rim3D_SettingFieldOfView>First-person field of view: {0}°</Rim3D_SettingFieldOfView>
+  <Rim3D_SettingMouseSensitivity>Mouse sensitivity: {0}</Rim3D_SettingMouseSensitivity>
+  <Rim3D_ActionAcceleration>Action acceleration</Rim3D_ActionAcceleration>
+  <Rim3D_ActionAccelerationOff>OFF · [[Acceleration]] – enable</Rim3D_ActionAccelerationOff>
+  <Rim3D_ActionAccelerationReady>ON · waiting for action · [[Acceleration]] – disable</Rim3D_ActionAccelerationReady>
+  <Rim3D_ActionAccelerationActive>ACCELERATING · [[Acceleration]] – disable</Rim3D_ActionAccelerationActive>
+  <Rim3D_ActionAccelerationMultiplayer>Shared acceleration · [[Acceleration]] – toggle for all players</Rim3D_ActionAccelerationMultiplayer>
+  <Rim3D_SettingAccelerateActions>Accelerate time during first-person actions ([[Acceleration]])</Rim3D_SettingAccelerateActions>
+  <Rim3D_SettingBlockAutomaticPawnSwitch>Block automatic pawn switching</Rim3D_SettingBlockAutomaticPawnSwitch>
+  <Rim3D_SettingBlockAutomaticPawnSwitchHint>Stay with the selected pawn when they fall asleep. You can still switch pawns manually.</Rim3D_SettingBlockAutomaticPawnSwitchHint>
+  <Rim3D_SettingDisablePlantSlowdown>Remove grass and vegetation slowdown during manual control (multiplayer uses the host setting)</Rim3D_SettingDisablePlantSlowdown>
+  <Rim3D_SelfTendMedicine>Tend yourself with held medicine</Rim3D_SelfTendMedicine>
+  <Rim3D_SelfTendHands>Tend yourself without medicine</Rim3D_SelfTendHands>
+  <Rim3D_TendMedicine>Tend with held medicine</Rim3D_TendMedicine>
+  <Rim3D_TendHands>Tend without medicine</Rim3D_TendHands>
+  <Rim3D_SelfTendReport>Tending yourself.</Rim3D_SelfTendReport>
+  <Rim3D_TendReport>Tending {0}.</Rim3D_TendReport>
+  <Rim3D_CombatDisabled>This pawn is incapable of melee and shooting</Rim3D_CombatDisabled>
+  <Rim3D_MeleeDisabled>This pawn is incapable of melee</Rim3D_MeleeDisabled>
+  <Rim3D_ShootingDisabled>This pawn is incapable of shooting</Rim3D_ShootingDisabled>
+  <Rim3D_ZonesMenu>Zones and areas</Rim3D_ZonesMenu>
+  <Rim3D_ZoneStockpile>Stockpile</Rim3D_ZoneStockpile>
+  <Rim3D_ZoneDumping>Dumping stockpile</Rim3D_ZoneDumping>
+  <Rim3D_ZoneGrowing>Growing zone</Rim3D_ZoneGrowing>
+  <Rim3D_ZoneHomeAdd>Expand home area</Rim3D_ZoneHomeAdd>
+  <Rim3D_ZoneHomeRemove>Shrink home area</Rim3D_ZoneHomeRemove>
+  <Rim3D_ZoneErase>Remove zone cells</Rim3D_ZoneErase>
+  <Rim3D_ZoneSettings>Settings: {0}</Rim3D_ZoneSettings>
+  <Rim3D_StorageInventory>Storage: {0}</Rim3D_StorageInventory>
+  <Rim3D_OpenStorageInventory>Open storage inventory</Rim3D_OpenStorageInventory>
+  <Rim3D_HintStorageInventory>[[Interact]]: open storage inventory</Rim3D_HintStorageInventory>
+  <Rim3D_ZoneAimGround>Aim at the ground within 40 cells.</Rim3D_ZoneAimGround>
+  <Rim3D_ZoneTooLarge>One rectangle can be at most 64 × 64 cells. Mark it in sections.</Rim3D_ZoneTooLarge>
+  <Rim3D_ZoneWrongType>The first corner belongs to another zone type. Start on an empty cell or in a matching zone.</Rim3D_ZoneWrongType>
+  <Rim3D_ZoneNoCells>No eligible cells to change.</Rim3D_ZoneNoCells>
+  <Rim3D_ZoneChanged>Cells changed: {0}</Rim3D_ZoneChanged>
+  <Rim3D_ZoneFirstCorner>LMB: first corner</Rim3D_ZoneFirstCorner>
+  <Rim3D_ZoneSecondCorner>LMB: second corner, confirm rectangle</Rim3D_ZoneSecondCorner>
+  <Rim3D_ZoneControls>Hold [[Sprint]] to remove · [[Interact]]: settings · RMB / [[CancelAction]] / Esc: cancel</Rim3D_ZoneControls>
+  <Rim3D_MergeInventory>Merge stacks</Rim3D_MergeInventory>
+  <Rim3D_FireSingle>Single</Rim3D_FireSingle>
+  <Rim3D_FireBurst>Burst</Rim3D_FireBurst>
+  <Rim3D_FireAuto>Automatic</Rim3D_FireAuto>
+  <Rim3D_FireModeHint>[[FireMode]]: {0} · Hold LMB to fire</Rim3D_FireModeHint>
+  <Rim3D_WeaponOverheated>Weapon overheated – cooling down</Rim3D_WeaponOverheated>
+  <Rim3D_BuryCarried>Bury carried corpse</Rim3D_BuryCarried>
+  <Rim3D_HintBuryCarried>[[Interact]]: bury carried corpse</Rim3D_HintBuryCarried>
+  <Rim3D_PutCarriedInBed>Put carried pawn in bed</Rim3D_PutCarriedInBed>
+  <Rim3D_HintPutCarriedInBed>[[Interact]]: put carried pawn in bed · reassign ordinary bed</Rim3D_HintPutCarriedInBed>
+  <Rim3D_GraveUnavailable>Grave occupied, reserved, assigned to another pawn, or does not accept this corpse</Rim3D_GraveUnavailable>
+  <Rim3D_SettingMountainSimplification>Mountain simplification: {0}</Rim3D_SettingMountainSimplification>
+  <Rim3D_SettingMountainSimplificationHint>Higher levels simplify mountains more aggressively and closer to the camera. Seams and entrances are preserved. Applies immediately.</Rim3D_SettingMountainSimplificationHint>
+  <Rim3D_MountainSimplification0>Off</Rim3D_MountainSimplification0>
+  <Rim3D_MountainSimplification1>Low</Rim3D_MountainSimplification1>
+  <Rim3D_MountainSimplification2>Medium</Rim3D_MountainSimplification2>
+  <Rim3D_MountainSimplification3>High</Rim3D_MountainSimplification3>
+  <Rim3D_ChooseRoof>Choose roof type</Rim3D_ChooseRoof>
+  <Rim3D_RoofFlat>Flat roof</Rim3D_RoofFlat>
+  <Rim3D_RoofProcedural>Procedural roof</Rim3D_RoofProcedural>
+  <Rim3D_RecreationUnavailable>This recreation is unavailable right now.</Rim3D_RecreationUnavailable>
+  <Rim3D_HintRecreation>[[Interact]] –  recreation</Rim3D_HintRecreation>
+  <Rim3D_SettingAnimalPlantModels>Animals and plants: {0}</Rim3D_SettingAnimalPlantModels>
+  <Rim3D_SettingLegacyTreeScale>Previous tree size</Rim3D_SettingLegacyTreeScale>
+  <Rim3D_SettingLegacyTreeScaleHint>Restore the previous tree size. By default, trees are twice as large. Changes apply as map chunks refresh; no restart is required.</Rim3D_SettingLegacyTreeScaleHint>
+  <Rim3D_SettingAnimalPlantModelsHint>Click to switch. 2D uses sprites; 3D uses addon models when available, with sprites as a fallback. No restart is required.</Rim3D_SettingAnimalPlantModelsHint>
+  <Rim3D_SettingAutoGenerateBuildings>Generate 3D models for buildings without a model</Rim3D_SettingAutoGenerateBuildings>
+  <Rim3D_SettingAutoGenerateBuildingsHint>Approximate volumes follow the texture silhouette and building properties. Floor objects and custom models keep their existing rendering. Changes apply as map chunks refresh.</Rim3D_SettingAutoGenerateBuildingsHint>
+  <Rim3D_MoveFurniture>Move furniture</Rim3D_MoveFurniture>
+  <Rim3D_MoveFurnitureHint>Left click –  choose destination, [[RotateOrSwap]] –  rotate, right click or Esc –  cancel. Furniture stays in place until confirmed.</Rim3D_MoveFurnitureHint>
+  <Rim3D_CompassHome>Home</Rim3D_CompassHome>
+  <Rim3D_CompassMarker>Marker</Rim3D_CompassMarker>
+  <Rim3D_CompassDirection0>N</Rim3D_CompassDirection0>
+  <Rim3D_CompassDirection1>E</Rim3D_CompassDirection1>
+  <Rim3D_CompassDirection2>S</Rim3D_CompassDirection2>
+  <Rim3D_CompassDirection3>W</Rim3D_CompassDirection3>
+  <Rim3D_CompassHint>[[Compass]]: create/edit compass marker on ground under crosshair</Rim3D_CompassHint>
+  <Rim3D_CompassAimGround>Aim at the ground to place a compass marker.</Rim3D_CompassAimGround>
+  <Rim3D_CompassMarkerLimit>Compass marker limit reached (32). Aim near an existing marker and press [[Compass]] to edit or delete it.</Rim3D_CompassMarkerLimit>
+  <Rim3D_CompassEdit>Compass marker</Rim3D_CompassEdit>
+  <Rim3D_CompassEditHint>[[Compass]] – edit</Rim3D_CompassEditHint>
+  <Rim3D_CompassChooseIcon>Choose an icon</Rim3D_CompassChooseIcon>
+  <Rim3D_CompassSave>Save</Rim3D_CompassSave>
+  <Rim3D_CompassDelete>Delete</Rim3D_CompassDelete>
+  <Rim3D_CompassCancel>Cancel</Rim3D_CompassCancel>
+  <Rim3D_FurnitureMoved>Furniture moved</Rim3D_FurnitureMoved>
+  <Rim3D_SettingCompass>Show compass</Rim3D_SettingCompass>
+  <Rim3D_SettingCompassHint>In multiplayer, disabling the compass as host hides it for all players and disables marker placement. When enabled by the host, each player can hide their own compass.</Rim3D_SettingCompassHint>
+  <Rim3D_SettingShootWhileRunning>Allow shooting while running</Rim3D_SettingShootWhileRunning>
+  <Rim3D_SettingShootWhileRunningHint>Disables the weapon running animation and allows firing and aiming while running. Off by default. In multiplayer, the host controls this setting for all players.</Rim3D_SettingShootWhileRunningHint>
+  <Rim3D_SettingLockClientPawns>Lock client pawns (host only)</Rim3D_SettingLockClientPawns>
+  <Rim3D_SettingLockClientPawnsHint>Multiplayer only: clients stay in 3D and cannot switch pawns. Incapacitation or death transitions to the free camera after the fall animation. The host is unrestricted.</Rim3D_SettingLockClientPawnsHint>
+  <Rim3D_PawnLockActive>Pawn lock: enabled</Rim3D_PawnLockActive>
+  <Rim3D_SettingModelLods>Automatic model LOD</Rim3D_SettingModelLods>
+  <Rim3D_SettingDistantModelCards>2D models at long distance</Rim3D_SettingDistantModelCards>
+  <Rim3D_SettingModelLodDistance>Model LOD distance: {0} cells</Rim3D_SettingModelLodDistance>
+  <Rim3D_SettingModelCardDistance>2D model distance: {0} cells</Rim3D_SettingModelCardDistance>
+  <Rim3D_SettingModelLodsHint>XML models use LODs generated during mod build. Distant models use game textures. Changes apply gradually by chunk. Held models and animated structures keep their original detail.</Rim3D_SettingModelLodsHint>
+  <Rim3D_BindingsTitle>Key bindings</Rim3D_BindingsTitle>
+  <Rim3D_BindingsHint>Click a key, then press a keyboard key. Two keys per action. Esc cancels. Duplicate bindings may conflict.</Rim3D_BindingsHint>
+  <Rim3D_BindingsReset>Reset key bindings</Rim3D_BindingsReset>
+  <Rim3D_BindingNone>Unassigned</Rim3D_BindingNone>
+  <Rim3D_BindingPressKey>Press a keyboard key. Esc cancels. To unbind, click below.</Rim3D_BindingPressKey>
+  <Rim3D_BindingClear>Clear binding</Rim3D_BindingClear>
+  <Rim3D_BindingForward>Move forward</Rim3D_BindingForward>
+  <Rim3D_BindingBackward>Move backward</Rim3D_BindingBackward>
+  <Rim3D_BindingLeft>Move left</Rim3D_BindingLeft>
+  <Rim3D_BindingRight>Move right</Rim3D_BindingRight>
+  <Rim3D_BindingSprint>Sprint / remove zones and roofs</Rim3D_BindingSprint>
+  <Rim3D_BindingSneak>Sneak</Rim3D_BindingSneak>
+  <Rim3D_BindingCursor>Release cursor</Rim3D_BindingCursor>
+  <Rim3D_BindingToggle3D>Open / close 3D</Rim3D_BindingToggle3D>
+  <Rim3D_BindingPerspective>Switch perspective</Rim3D_BindingPerspective>
+  <Rim3D_BindingNextPawn>Next pawn</Rim3D_BindingNextPawn>
+  <Rim3D_BindingPlans>Show / hide plans</Rim3D_BindingPlans>
+  <Rim3D_BindingAcceleration>Action acceleration</Rim3D_BindingAcceleration>
+  <Rim3D_BindingResetCamera>Reset camera</Rim3D_BindingResetCamera>
+  <Rim3D_BindingInteract>Interact / pick up item</Rim3D_BindingInteract>
+  <Rim3D_BindingCancelAction>Cancel action</Rim3D_BindingCancelAction>
+  <Rim3D_BindingCombat>Combat mode</Rim3D_BindingCombat>
+  <Rim3D_BindingRotateOrSwap>Rotate building / swap weapon</Rim3D_BindingRotateOrSwap>
+  <Rim3D_BindingStore>Store in inventory</Rim3D_BindingStore>
+  <Rim3D_BindingDrop>Drop item</Rim3D_BindingDrop>
+  <Rim3D_BindingUseItem>Use held item</Rim3D_BindingUseItem>
+  <Rim3D_BindingItemActions>Held item actions</Rim3D_BindingItemActions>
+  <Rim3D_BindingNextTarget>Next target</Rim3D_BindingNextTarget>
+  <Rim3D_BindingConstruction>Construction menu</Rim3D_BindingConstruction>
+  <Rim3D_BindingCharacter>Character and inventory</Rim3D_BindingCharacter>
+  <Rim3D_BindingPause>Pause</Rim3D_BindingPause>
+  <Rim3D_BindingCancelPlan>Cancel blueprint</Rim3D_BindingCancelPlan>
+  <Rim3D_BindingFireMode>Fire mode</Rim3D_BindingFireMode>
+  <Rim3D_BindingCompass>Compass marker</Rim3D_BindingCompass>
+  <Rim3D_SettingMinigames>Minigames during long actions</Rim3D_SettingMinigames>
+  <Rim3D_SettingMinigameExperience>Minigame work progress bonus</Rim3D_SettingMinigameExperience>
+  <Rim3D_SettingMinigameExperienceHint>At multiplier ×1: Mining and woodcutting: +5% work per point. Snake: +5% per 5 points. Other work minigames: up to 5% and 10 game seconds of labor per point. Research: up to 10 game seconds of work per point, capped at 1% of the project and +50% of the normal rate. Disabling the bonus on the host disables it for everyone. Minigames remain local.</Rim3D_SettingMinigameExperienceHint>
+  <Rim3D_MinigameTitle>Work minigame</Rim3D_MinigameTitle>
+  <Rim3D_MinigameSnake>Snake</Rim3D_MinigameSnake>
+  <Rim3D_MinigameMining>Crack the Vein</Rim3D_MinigameMining>
+  <Rim3D_MinigameResearch>Connections</Rim3D_MinigameResearch>
+  <Rim3D_ResearchHint>Click to rotate nodes. Connect the source on the left to the outputs on the right. Claim 1–2 points early, or connect all three for 4 points.</Rim3D_ResearchHint>
+  <Rim3D_ResearchConnections>Outputs connected: {0} / 3</Rim3D_ResearchConnections>
+  <Rim3D_ResearchClaim>Claim: +{0} pt.</Rim3D_ResearchClaim>
+  <Rim3D_ResearchNew>New circuit</Rim3D_ResearchNew>
+  <Rim3D_ResearchReward>Per point: up to 10 game seconds of work, capped at 1% of the project. Acceleration cap: +50%; rewards wait in the queue.</Rim3D_ResearchReward>
+  <Rim3D_MinigameWoodcutting>Lumberjack Rhythm</Rim3D_MinigameWoodcutting>
+  <Rim3D_WoodcuttingHint>Strike on the matching side when the mark reaches the line. Hit: +1 point; right on the line: +2. Missing does not slow normal chopping.</Rim3D_WoodcuttingHint>
+  <Rim3D_WoodcuttingLeft>Left –  A / ←</Rim3D_WoodcuttingLeft>
+  <Rim3D_WoodcuttingRight>Right –  D / →</Rim3D_WoodcuttingRight>
+  <Rim3D_WoodcuttingReady>Keep the rhythm at the strike line</Rim3D_WoodcuttingReady>
+  <Rim3D_WoodcuttingHit>Good strike! +1 point</Rim3D_WoodcuttingHit>
+  <Rim3D_WoodcuttingPerfect>Right on the notch! +2 points</Rim3D_WoodcuttingPerfect>
+  <Rim3D_WoodcuttingMiss>Missed. Catch the next mark</Rim3D_WoodcuttingMiss>
+  <Rim3D_WoodcuttingReward>Score {0} for +{1}% chopping when the bonus is enabled.</Rim3D_WoodcuttingReward>
+  <Rim3D_MiningHint>Strike in the green zone. Three hits break the rock. Finish in the gold zone for double points.</Rim3D_MiningHint>
+  <Rim3D_MiningRockProgress>Rock hits: {0} / {1}</Rim3D_MiningRockProgress>
+  <Rim3D_MiningHit>Good strike!</Rim3D_MiningHit>
+  <Rim3D_MiningPerfect>Right on the vein!</Rim3D_MiningPerfect>
+  <Rim3D_MiningMiss>Miss: crack progress −1</Rim3D_MiningMiss>
+  <Rim3D_MiningExtracted>Vein cracked! +{0} pt.</Rim3D_MiningExtracted>
+  <Rim3D_MiningStrike>Strike –  Space / Enter / click</Rim3D_MiningStrike>
+  <Rim3D_MiningReward>Score {0} for +{1}% work when the bonus is enabled.</Rim3D_MiningReward>
+  <Rim3D_ReloadResearchJob>Restart the game to load the manual research job.</Rim3D_ReloadResearchJob>
+  <Rim3D_MinigameHint>Move with arrows or WASD. Score {0} to gain {1}% progress on the current work when the bonus is enabled. Closing does not interrupt work.</Rim3D_MinigameHint>
+  <Rim3D_MinigameScore>Apples collected: {0}</Rim3D_MinigameScore>
+  <Rim3D_MinigamePoints>Points: {0}</Rim3D_MinigamePoints>
+  <Rim3D_MinigameExperienceOn>Work progress bonus enabled</Rim3D_MinigameExperienceOn>
+  <Rim3D_MinigameExperienceOff>No work progress bonus for this action</Rim3D_MinigameExperienceOff>
+  <Rim3D_MinigameWon>Board completed!</Rim3D_MinigameWon>
+  <Rim3D_MinigameLost>Game over. No penalty.</Rim3D_MinigameLost>
+  <Rim3D_MinigameRestart>Play again</Rim3D_MinigameRestart>
+  <Rim3D_MinigameOpen>Open minigame</Rim3D_MinigameOpen>
+  <Rim3D_OverlayFertility>Fertility</Rim3D_OverlayFertility>
+  <Rim3D_OverlayPower>Power grids</Rim3D_OverlayPower>
+  <Rim3D_OverlayBeauty>Beauty</Rim3D_OverlayBeauty>
+  <Rim3D_OverlayZones>Zones</Rim3D_OverlayZones>
+  <Rim3D_OverlayFertilityValue>Fertility: {0}</Rim3D_OverlayFertilityValue>
+  <Rim3D_MortarUse>Aim mortar</Rim3D_MortarUse>
+  <Rim3D_MortarHint>[[Interact]] –  man mortar and open targeting</Rim3D_MortarHint>
+  <Rim3D_MortarTitle>Artillery targeting –  {0}</Rim3D_MortarTitle>
+  <Rim3D_MortarHelp>[[Movement]] –  pan · Wheel –  zoom · [[Interact]] –  center on mortar\nLMB –  assign target · RMB –  cancel target · Escape –  return to pawn</Rim3D_MortarHelp>
+  <Rim3D_MortarCancelled>Target cancelled; fire stopped until a new target is assigned. Shells already fired remain in flight.</Rim3D_MortarCancelled>
+  <Rim3D_MortarLocation>Mortar</Rim3D_MortarLocation>
+  <Rim3D_MortarHere>Mortar · you are here</Rim3D_MortarHere>
+  <Rim3D_MortarPawnLocation>You: {0}</Rim3D_MortarPawnLocation>
+  <Rim3D_MortarCenter>Center on mortar ([[Interact]])</Rim3D_MortarCenter>
+  <Rim3D_MortarRangeLegend>Green –  within firing area · Red –  cannot fire</Rim3D_MortarRangeLegend>
+  <Rim3D_MortarAmmoNearby>Available nearby shells ({0}-tile radius)</Rim3D_MortarAmmoNearby>
+  <Rim3D_MortarNoAmmo>No available shells nearby.</Rim3D_MortarNoAmmo>
+  <Rim3D_MortarNextAmmo>The pawn will pick this shell type next.</Rim3D_MortarNextAmmo>
+  <Rim3D_MortarReturn>Return to pawn</Rim3D_MortarReturn>
+  <Rim3D_MortarInvalid>This cell cannot be shelled. Choose a target in the green area.</Rim3D_MortarInvalid>
+  <Rim3D_MortarNotReady>The pawn has not manned the mortar yet. Wait for arrival or reloading.</Rim3D_MortarNotReady>
+  <Rim3D_MortarOrdered>Target command sent. The pawn continues approaching and loading automatically.</Rim3D_MortarOrdered>
+  <Rim3D_MortarTargetCell>Artillery target: {0}, {1}</Rim3D_MortarTargetCell>
+  <Rim3D_MortarChooseTarget>Left-click the green area to assign a target, even before the mortar is ready.</Rim3D_MortarChooseTarget>
+  <Rim3D_MortarPaused>Paused –  preparation and firing are suspended.</Rim3D_MortarPaused>
+  <Rim3D_MortarHoldFire>Hold fire is enabled. The mortar will not fire.</Rim3D_MortarHoldFire>
+  <Rim3D_MortarRoofed>The mortar is under a roof and cannot fire.</Rim3D_MortarRoofed>
+  <Rim3D_MortarRefueling>Maintenance: a barrel or fuel is required. The target is retained.</Rim3D_MortarRefueling>
+  <Rim3D_MortarLoading>The pawn is delivering and loading a shell. You can assign a target now.</Rim3D_MortarLoading>
+  <Rim3D_MortarApproaching>The pawn is moving to the mortar. You can assign a target now.</Rim3D_MortarApproaching>
+  <Rim3D_MortarUnavailable>The mortar is unavailable. Hover over this status for details.</Rim3D_MortarUnavailable>
+  <Rim3D_MortarFired>Fired! Shell in flight.</Rim3D_MortarFired>
+  <Rim3D_MortarWarmup>Firing in {0} s.</Rim3D_MortarWarmup>
+  <Rim3D_MortarCooldown>Reloading: {0} s until ready to aim.</Rim3D_MortarCooldown>
+  <Rim3D_MortarPreparing>Target accepted –  preparing to fire.</Rim3D_MortarPreparing>
+  <Rim3D_MortarReady>Mortar ready. Choose a target.</Rim3D_MortarReady>
+  <Rim3D_TakePaste>Take nutrient paste</Rim3D_TakePaste>
+  <Rim3D_HintTakePaste>[[Interact]] –  take nutrient paste</Rim3D_HintTakePaste>
+  <Rim3D_PasteUnavailable>Paste unavailable: you need free hands, access to the dispenser, power and food in the hoppers.</Rim3D_PasteUnavailable>
+  <Rim3D_ActivityBuilding>Precise Fit</Rim3D_ActivityBuilding>
+  <Rim3D_ActivityBuildingHint>Fix three parts in the center of the blueprint: Space or the button. Three precise hits earn 2 points. A miss only resets this minigame section.</Rim3D_ActivityBuildingHint>
+  <Rim3D_ActivityPlace>Fix part –  Space</Rim3D_ActivityPlace>
+  <Rim3D_ActivityRepair>Fault Finder</Rim3D_ActivityRepair>
+  <Rim3D_ActivityRepairHint>Select a faulty node, then its tool: 1 –  broken wire, 2 –  corrosion, 3 –  short circuit. Repair three nodes. No mistakes earns 2 points.</Rim3D_ActivityRepairHint>
+  <Rim3D_ActivityTool1>1 Patch</Rim3D_ActivityTool1>
+  <Rim3D_ActivityTool2>2 Clean</Rim3D_ActivityTool2>
+  <Rim3D_ActivityTool3>3 Insulate</Rim3D_ActivityTool3>
+  <Rim3D_ActivityCrafting>Follow the Pattern</Rim3D_ActivityCrafting>
+  <Rim3D_ActivityCraftingHint>Hold LMB at point 1 and trace the line through every point. Stay on the contour. One continuous pass without mistakes earns 2 points.</Rim3D_ActivityCraftingHint>
+  <Rim3D_ActivitySowing>Even Rows</Rim3D_ActivitySowing>
+  <Rim3D_ActivitySowingHint>Plant in dark holes at the line: keys 1/2/3 or the row buttons. Let gray stones pass. Four consecutive plantings earn a point.</Rim3D_ActivitySowingHint>
+  <Rim3D_ActivityHarvest>Ripe for Picking</Rim3D_ActivityHarvest>
+  <Rim3D_ActivityHarvestHint>Pick four golden ripe plants. Green plants are unripe; crossed red plants are damaged. No mistakes earns 2 points.</Rim3D_ActivityHarvestHint>
+  <Rim3D_ActivityDismantling>Take It Apart</Rim3D_ActivityDismantling>
+  <Rim3D_ActivityDismantlingHint>Undo the four corner fasteners marked +. Remove both panels, then the frame. This order only affects the minigame.</Rim3D_ActivityDismantlingHint>
+  <Rim3D_ActivityPanel>Panel</Rim3D_ActivityPanel>
+  <Rim3D_ActivityFrame>Remove frame</Rim3D_ActivityFrame>
+  <Rim3D_ActivitySmoothing>Level Surface</Rim3D_ActivitySmoothing>
+  <Rim3D_ActivitySmoothingHint>Hold LMB and follow the tops of the raised areas as they lower. Level all eight areas to the green line.</Rim3D_ActivitySmoothingHint>
+  <Rim3D_ActivityBandaging>Bandaging</Rim3D_ActivityBandaging>
+  <Rim3D_ActivityBandagingHint>Hold LMB at the green start, drag the bandage straight and release in the gold zone. Lay four strips. Precise tension earns 2 points.</Rim3D_ActivityBandagingHint>
+  <Rim3D_ActivitySuccess>Stage complete! +{0} pt.</Rim3D_ActivitySuccess>
+  <Rim3D_ActivityMiss>Try again. Normal work continues.</Rim3D_ActivityMiss>
+  <Rim3D_ActivityReady>Complete a stage to earn a bonus</Rim3D_ActivityReady>
+  <Rim3D_ActivityReward>A stage earns 1–2 points. Each adds up to 5% work, capped at 10 game seconds of normal labor, when the bonus is enabled.</Rim3D_ActivityReward>
+  <Rim3D_ActivityChess>Knight Fork</Rim3D_ActivityChess>
+  <Rim3D_ActivityChessHint>Click the white knight N, then a square attacking both the queen Q and rook R. Knights move in an L. Solve without mistakes for 2 points, otherwise 1.</Rim3D_ActivityChessHint>
+  <Rim3D_ActivityHorseshoes>Horseshoe Toss</Rim3D_ActivityHorseshoes>
+  <Rim3D_ActivityHorseshoesHint>Use Space or the button to set direction, then power. Account for wind. A ringer earns 2 points; landing near the pin earns 1.</Rim3D_ActivityHorseshoesHint>
+  <Rim3D_RecreationReward>Each point: +{0}% recreation when the bonus is enabled. Normal recreation continues on its own.</Rim3D_RecreationReward>
+  <Rim3D_HorseshoesWind>Wind: {0} {1}%</Rim3D_HorseshoesWind>
+  <Rim3D_HorseshoesAim>Set direction –  Space</Rim3D_HorseshoesAim>
+  <Rim3D_HorseshoesThrow>Throw –  Space</Rim3D_HorseshoesThrow>
+  <Rim3D_HorseshoesFlight>Horseshoe in flight…</Rim3D_HorseshoesFlight>
+  <Rim3D_SettingNeighborMaps>Generate and display eight neighboring maps</Rim3D_SettingNeighborMaps>
+  <Rim3D_SettingNeighborMapsHint>Experimental: generates eight local maps around the current surface map as a 3×3 square. Full maps remain paused and are cached in the save; only simplified terrain, rocks and tree sprites are displayed. Initial generation takes time and increases memory and save size. Disabling hides the surroundings and stops further generation, but keeps cached maps. In Multiplayer only the host prepares maps. Travel is not available yet; map edges are not seamless.</Rim3D_SettingNeighborMapsHint>
+  <Rim3D_LoadingNeighbors>Generating neighboring maps...</Rim3D_LoadingNeighbors>
+  <Rim3D_ControlsHelpButton>F1 – controls help</Rim3D_ControlsHelpButton>
+  <Rim3D_ControlsHelpTitle>Controls</Rim3D_ControlsHelpTitle>
+  <Rim3D_ControlsHelpLegend>Green highlights actions available before opening help. Other actions and all key bindings are listed below. F1 or Esc closes help.</Rim3D_ControlsHelpLegend>
+  <Rim3D_ControlsHelpInterface>Hide / show interface</Rim3D_ControlsHelpInterface>
+  <Rim3D_SettingsTabMinigames>Minigames</Rim3D_SettingsTabMinigames>
+  <Rim3D_SettingMinigameLocalHint>The master minigame switch and individual game selection apply only to you. Disabled games are not replaced by Snake. Normal work continues independently.</Rim3D_SettingMinigameLocalHint>
+  <Rim3D_SettingMinigameHostRewardsHint>In multiplayer, the host controls rewards and multipliers for everyone. Clients can only view these settings. ×0 gives no reward; ×1 gives the normal reward. Multipliers scale the base reward and its limits; scores and difficulty stay the same.</Rim3D_SettingMinigameHostRewardsHint>
+  <Rim3D_SettingMinigameMultiplier>Reward multiplier: ×{0}</Rim3D_SettingMinigameMultiplier>
+  <Rim3D_MinigameOptionSnake>Snake –  other actions</Rim3D_MinigameOptionSnake>
+  <Rim3D_MinigameOptionMining>Crack the Vein –  mining</Rim3D_MinigameOptionMining>
+  <Rim3D_MinigameOptionWoodcutting>Lumberjack Rhythm –  woodcutting</Rim3D_MinigameOptionWoodcutting>
+  <Rim3D_MinigameOptionResearch>Connections –  research</Rim3D_MinigameOptionResearch>
+  <Rim3D_MinigameOptionBuilding>Construction</Rim3D_MinigameOptionBuilding>
+  <Rim3D_MinigameOptionRepair>Repair</Rim3D_MinigameOptionRepair>
+  <Rim3D_MinigameOptionCrafting>Crafting</Rim3D_MinigameOptionCrafting>
+  <Rim3D_MinigameOptionSowing>Sowing</Rim3D_MinigameOptionSowing>
+  <Rim3D_MinigameOptionHarvest>Harvesting</Rim3D_MinigameOptionHarvest>
+  <Rim3D_MinigameOptionDismantling>Dismantling</Rim3D_MinigameOptionDismantling>
+  <Rim3D_MinigameOptionSmoothing>Smoothing</Rim3D_MinigameOptionSmoothing>
+  <Rim3D_MinigameOptionBandaging>Bandaging –  tending and self-tending</Rim3D_MinigameOptionBandaging>
+  <Rim3D_MinigameOptionChess>Chess</Rim3D_MinigameOptionChess>
+  <Rim3D_MinigameOptionHorseshoes>Horseshoes</Rim3D_MinigameOptionHorseshoes>
+  <Rim3D_MinigameRewardScale>Reward: ×{0} of base</Rim3D_MinigameRewardScale>
+  <Rim3D_BindingOrders>Colony orders</Rim3D_BindingOrders>
+  <Rim3D_OrdersTitle>Colony orders</Rim3D_OrdersTitle>
+  <Rim3D_OrdersBack>Back</Rim3D_OrdersBack>
+  <Rim3D_OrdersColonists>Order a colonist</Rim3D_OrdersColonists>
+  <Rim3D_OrdersAllowedArea>Allowed area</Rim3D_OrdersAllowedArea>
+  <Rim3D_OrdersChooseTarget>Choose a work, movement or attack target</Rim3D_OrdersChooseTarget>
+  <Rim3D_OrdersZoneSettings>Stockpile and growing zone settings</Rim3D_OrdersZoneSettings>
+  <Rim3D_OrdersNewZone>Create or expand automatically</Rim3D_OrdersNewZone>
+  <Rim3D_OrdersOpenHint>[[Orders]] –  colony orders</Rim3D_OrdersOpenHint>
+  <Rim3D_OrdersControls>LMB –  select; hold and look –  rectangle; [[Sneak]] –  add; [[Interact]] –  confirm; RMB / [[CancelAction]] / Esc –  clear or close; [[CancelPlan]] –  cancel orders; [[RotateOrSwap]] –  rotate</Rim3D_OrdersControls>
+  <Rim3D_OrdersColonistHint>Aim and click LMB –  native colonist commands; RMB / [[CancelAction]] / Esc –  close</Rim3D_OrdersColonistHint>
+  <Rim3D_OrdersColonistControls>{0}: aim and click LMB to open native colonist commands.</Rim3D_OrdersColonistControls>
+  <Rim3D_OrdersApplied>Order accepted for {0} targets / cells.</Rim3D_OrdersApplied>
+  <Rim3D_OrdersNoTargets>No available targets. Check the tool and its requirements.</Rim3D_OrdersNoTargets>
+  <Rim3D_OrdersSameMap>Select targets on one map / floor at a time.</Rim3D_OrdersSameMap>
+  <Rim3D_OrdersTooLarge>Select up to {0} targets / cells at a time.</Rim3D_OrdersTooLarge>
+  <Rim3D_OrdersAdapterRequired>Update RimVision Multiplayer Compatibility to send colony orders.</Rim3D_OrdersAdapterRequired>
+  <Rim3D_BindingAscend>Ascend (native control)</Rim3D_BindingAscend>
+  <Rim3D_BindingDescend>Descend (native control)</Rim3D_BindingDescend>
+  <Rim3D_ApiDiagnostics>API diagnostics</Rim3D_ApiDiagnostics>
+  <Rim3D_ApiInvert>Invert</Rim3D_ApiInvert>
+  <Rim3D_ApiDeadzone>Deadzone: {0}</Rim3D_ApiDeadzone>
+  <Rim3D_ApiContractMismatch>RimVision API contracts differ from {0}. Check matching gameplay add-ons and versions.</Rim3D_ApiContractMismatch>
+</LanguageData>

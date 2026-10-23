@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <WorldObjectDef>
+    <defName>Rim3D_NeighborMap</defName>
+    <label>neighboring area</label>
+    <worldObjectClass>Recovery.Rim3D.NeighborMapParent</worldObjectClass>
+  </WorldObjectDef>
+  <MapGeneratorDef>
+    <defName>Rim3D_NeighborMap</defName>
+    <pocketMapProperties>
+      <destroyOnParentMapAbandoned>true</destroyOnParentMapAbandoned>
+    </pocketMapProperties>
+    <genSteps>
+      <li>ElevationFertility</li>
+      <li>RocksFromGrid</li>
+      <li>Terrain</li>
+      <li>Roads</li>
+      <li>FindPlayerStartSpot</li>
+      <li>RockChunks</li>
+      <li>SteamGeysers</li>
+      <li>Plants</li>
+      <li>Snow</li>
+      <li>Animals</li>
+      <li>Fog</li>
+    </genSteps>
+  </MapGeneratorDef>
+</Defs>

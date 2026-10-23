@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RimVision – Third Person</name>
+  <author>Papaya</author>
+  <packageId>papaya.rimvision.thirdperson</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies>
+    <li><packageId>papaya.rimvision</packageId><displayName>RimVision (API 1.5+)</displayName></li>
+  </modDependencies>
+  <loadAfter><li>papaya.rimvision</li><li>papaya.rimvision.multiplayer</li></loadAfter>
+  <description><![CDATA[
+Adds an over-the-shoulder camera to RimVision using its public API 1.5.
+
+Enter RimVision with O, then control a colonist with V.
+K switches between first-person and third-person cameras.
+Use the mouse wheel to adjust the camera distance. WASD, aiming and interactions keep their RimVision bindings.
+The toggle can be rebound in RimVision's controls settings.
+
+The camera shortens its distance near obstacles and keeps aiming from the actor. Mortar targeting, falls and camera transitions use RimVision's normal camera.
+
+Requires RimVision with API 1.5 or newer. Load after RimVision. Multiplayer also requires the matching RimVision Multiplayer Compatibility add-on.
+
+Камера за плечом для RimVision. O –  открыть 3D, V –  управление персонажем, K –  первое/третье лицо, колесо мыши –  расстояние. Клавишу можно изменить в настройках управления RimVision.
+  ]]></description>
+</ModMetaData>

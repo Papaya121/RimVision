@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RimVision API Example</name>
+  <author>Example Author</author>
+  <packageId>example.rimvision.api</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies>
+    <li><packageId>papaya.rimvision</packageId><displayName>RimVision</displayName></li>
+  </modDependencies>
+  <loadAfter><li>papaya.rimvision</li></loadAfter>
+  <description>Developer example: an FPV repair action, a HUD label and a repair minigame. Enable only while developing an extension.</description>
+</ModMetaData>

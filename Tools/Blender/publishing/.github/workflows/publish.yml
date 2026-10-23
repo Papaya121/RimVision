@@ -1,0 +1,59 @@
+name: Publish Blender extension
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rimvision/**'
+      - 'wheels/**'
+      - 'blender_manifest.toml'
+      - 'package.py'
+      - 'README.md'
+      - 'THIRD_PARTY.md'
+      - 'LICENSE'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: extension-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Package extension and repository
+        run: python package.py --extension --output-dir dist
+      - name: Publish versioned release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(python -c 'import tomllib; print(tomllib.load(open("blender_manifest.toml", "rb"))["version"])')
+          TAG="v$VERSION"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release download "$TAG" --pattern "rimvision-$VERSION.zip" --dir previous-release
+            if ! cmp "dist/rimvision-$VERSION.zip" "previous-release/rimvision-$VERSION.zip"; then
+              echo "Version $VERSION already contains different files. Increase the manifest and bl_info versions."
+              exit 1
+            fi
+          else
+            gh release create "$TAG" "dist/rimvision-$VERSION.zip" --target "$GITHUB_SHA" --title "RimVision Model Tools $VERSION" --generate-notes
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deploy
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>RimVision.ThirdPerson</AssemblyName>
+    <Version>1.0.0</Version>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DebugType>none</DebugType>
+    <GameRoot Condition="'$(GameRoot)' == ''">D:/SteamLibrary/steamapps/common/RimWorld</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Source/*.cs" />
+    <ProjectReference Include="../RimVision/Rim3D.csproj" Condition="'$(RimVisionAssembly)' == ''" />
+    <Reference Include="Recovery.Rim3D" Condition="'$(RimVisionAssembly)' != ''"><HintPath>$(RimVisionAssembly)</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameRoot)/RimWorldWin64_Data/Managed/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="$(GameRoot)/RimWorldWin64_Data/Managed/UnityEngine*.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

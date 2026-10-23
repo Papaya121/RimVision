@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RimVision – Multiplayer Compatibility</name>
+  <author>RimVision</author>
+  <packageId>papaya.rimvision.multiplayer</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies>
+    <li><packageId>brrainz.harmony</packageId><displayName>Harmony</displayName></li>
+    <li><packageId>rwmt.Multiplayer</packageId><displayName>Multiplayer</displayName></li>
+    <li><packageId>papaya.rimvision</packageId><displayName>RimVision</displayName></li>
+  </modDependencies>
+  <loadAfter><li>brrainz.harmony</li><li>rwmt.Multiplayer</li><li>papaya.rimvision</li></loadAfter>
+  <description><![CDATA[
+{RimVisionVersion}
+
+RIMVISION – MULTIPLAYER COMPATIBILITY
+
+Experience your colony together.
+
+Walk through your base, take control of a colonist and join your friends in the life of your colony. This add-on connects RimVision's first-person gameplay to Multiplayer, synchronizing your actions in the shared game.
+
+FEATURES
+
+• Move and control colonists in first person during a multiplayer session.
+• Fight, use equipment and interact with the world.
+• Build, carry resources and work at crafting stations.
+• Manage inventory, carry items and characters, eat and sleep.
+• Designate zones and work with roofs.
+• Keep control sessions when saving and loading the colony.
+• Use your own camera, interface and visual effects.
+
+Actions that affect the colony are synchronized through Multiplayer. Each player's camera and visual settings remain local.
+
+REQUIREMENTS
+
+• RimWorld 1.6.
+• Harmony.
+• Multiplayer.
+• RimVision.
+
+This is an add-on for RimVision. All players need the same versions of RimVision, Multiplayer and this compatibility mod, with matching mod lists.
+
+INSTALLATION
+
+Enable the required mods on every player's computer in this order:
+
+Harmony → Core and DLC → Multiplayer → RimVision → RimVision – Multiplayer Compatibility.
+
+Restart RimWorld after installing or updating the mods, then host or join a Multiplayer session.
+
+GETTING STARTED
+
+Load the colony and use RimVision's usual controls:
+
+O: enter 3D or return to the standard view.
+V: switch between overview and first-person view.
+WASD: move. Mouse: look around. Alt: release the cursor.
+E: interact. Right mouse button: action menu.
+F: combat mode. Left mouse button: attack in combat mode.
+B: construction and zones. Tab: character and inventory.
+Q: cancel the current action.
+
+Contextual hints show additional controls.
+
+COMPATIBILITY AND DEVELOPMENT
+
+The add-on is in active development. Desync-free gameplay is not guaranteed.
+
+When reporting an issue, include the game log, a Multiplayer desync report if available, your mod list, and the steps to reproduce the issue. Describe what each player was doing when it occurred.
+
+THANKS
+
+Thanks to the Multiplayer team, Brrainz for Harmony, Tynan and Ludeon Studios for RimWorld, and everyone helping with testing and feedback.
+
+RimWorld is owned by Ludeon Studios.
+  ]]></description>
+</ModMetaData>

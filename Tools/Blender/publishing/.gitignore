@@ -1,0 +1,4 @@
+dist/
+RimVision-Blender.zip
+__pycache__/
+*.pyc

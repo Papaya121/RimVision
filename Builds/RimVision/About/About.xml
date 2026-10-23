@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RimVision</name>
+  <author>Papaya</author>
+  <packageId>papaya.rimvision</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies><li><packageId>brrainz.harmony</packageId><displayName>Harmony</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl></li></modDependencies>
+  <loadAfter><li>brrainz.harmony</li><li>Ludeon.RimWorld</li></loadAfter>
+  <description>
+v0.0.5.1
+
+RIMVISION
+
+See your colony through your colonists' eyes.
+
+Walk through your base, visit its workshops and personally face a raid at the gates. RimVision adds a 3D colony view and direct first-person control of your colonists.
+
+FEATURES
+
+• Explore your colony in 3D and switch between an overview and first-person view.
+• Control a colonist, fight and interact with the world.
+• Build, carry resources, perform work and designate zones.
+• Manage inventory, change equipment, eat, sleep and tend injuries.
+• View your character's health, skills, mood and social relationships.
+• Experience lighting, shadows, rain, snow, water and fire effects.
+• Adjust the camera, image quality, interface and additional effects.
+
+Under direct control, you move the character to workstations and required items yourself. Skills, needs and restrictions continue to follow RimWorld's rules.
+
+GETTING STARTED
+
+O: enter 3D or return to the standard view.
+V: switch between overview and first-person view.
+WASD: move. Mouse: look around. Alt: release the cursor.
+E: interact. Right mouse button: action menu.
+F: combat mode. Left mouse button: attack in combat mode.
+B: construction and zones. Tab: character and inventory.
+Q: cancel the current action.
+
+Contextual hints show additional controls.
+
+REQUIREMENTS
+
+• RimWorld 1.6.
+• Harmony, loaded before RimVision.
+
+COMPATIBILITY
+
+Multiplayer requires the separate RimVision – Multiplayer Compatibility mod and matching mod versions on all clients. Desync-free play has not yet been confirmed.
+
+Compatibility with Combat Extended and other major mods requires separate testing. Back up your save before adding the mod to an existing colony. Safe removal from a save has not been confirmed.
+
+ABOUT THE MOD
+
+The mod is in active development. Bugs and limitations may occur. When reporting an issue, include the game log, your mod list and steps to reproduce it.
+
+Author: Papaya.
+Thanks to Tynan and Ludeon Studios for RimWorld, Brrainz for Harmony, and everyone helping with testing.
+RimWorld is owned by Ludeon Studios.
+  </description>
+</ModMetaData>
+
+

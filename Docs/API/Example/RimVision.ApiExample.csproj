@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>RimVision.ApiExample</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">D:/SteamLibrary/steamapps/common/RimWorld</GameRoot>
+    <RimVisionRoot Condition="'$(RimVisionRoot)' == ''">$(GameRoot)/Mods/RimVision</RimVisionRoot>
+    <OutputPath>Assemblies/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Source/**/*.cs" />
+    <Reference Include="Recovery.Rim3D"><HintPath>$(RimVisionRoot)/Assemblies/Recovery.Rim3D.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameRoot)/RimWorldWin64_Data/Managed/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="$(GameRoot)/RimWorldWin64_Data/Managed/UnityEngine*.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

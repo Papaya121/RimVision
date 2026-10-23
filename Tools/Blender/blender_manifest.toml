@@ -1,0 +1,15 @@
+schema_version = "1.0.0"
+id = "rimvision"
+version = "0.4.35"
+name = "RimVision Model Tools"
+tagline = "Create and edit RimWorld 3D models in Blender"
+maintainer = "Papaya121"
+type = "add-on"
+website = "https://github.com/Papaya121/RimVision-Blender"
+tags = ["Import-Export", "3D View"]
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Papaya121"]
+
+[permissions]
+files = "Read RimWorld files and save models, textures and sprite caches"

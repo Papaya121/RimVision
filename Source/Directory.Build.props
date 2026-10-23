@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <GameRoot Condition="'$(GameRoot)' == ''">D:/SteamLibrary/steamapps/common/RimWorld</GameRoot>
+  </PropertyGroup>
+</Project>

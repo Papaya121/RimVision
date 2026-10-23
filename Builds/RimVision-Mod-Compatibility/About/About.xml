@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RimVision – Mod Compatibility</name>
+  <author>Papaya</author>
+  <packageId>papaya.rimvision.compatibility</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies>
+    <li><packageId>brrainz.harmony</packageId><displayName>Harmony</displayName></li>
+    <li><packageId>papaya.rimvision</packageId><displayName>RimVision</displayName></li>
+  </modDependencies>
+  <loadAfter><li>brrainz.harmony</li><li>papaya.rimvision</li><li>Nals.FacialAnimation</li><li>Jaxe.Bubbles</li></loadAfter>
+  <description>Shared compatibility add-on for RimVision and other mods.
+
+Supported mods (RimWorld 1.6):
+• [NL] Facial Animation - WIP.
+• Interaction Bubbles.
+Animated faces refresh in RimVision's 3D view, including pawns in beds and carried pawns. Compatibility activates only when Facial Animation is enabled. Facial Animation remains an optional mod.
+
+Interaction Bubbles are drawn over RimVision's 3D view and positioned above visible pawns using the 3D camera. The mod's text, display settings and bubble lifetime are preserved. Interaction Bubbles remains an optional mod.
+
+Requires RimWorld 1.6, Harmony and RimVision. Load after RimVision. Multiplayer compatibility is provided by the separate RimVision – Multiplayer Compatibility add-on.</description>
+</ModMetaData>

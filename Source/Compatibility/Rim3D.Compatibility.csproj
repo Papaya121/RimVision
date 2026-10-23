@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>Recovery.Rim3D.Compatibility</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <DebugType>none</DebugType>
+    <GameManaged Condition="'$(GameManaged)' == ''">$(GameRoot)/RimWorldWin64_Data/Managed</GameManaged>
+    <HarmonyPath Condition="'$(HarmonyPath)' == ''">$(GameRoot)/Mods/HarmonyMod/Current/Assemblies/0Harmony.dll</HarmonyPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Source/**/*.cs" />
+    <ProjectReference Include="../RimVision/Rim3D.csproj" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameManaged)/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="$(GameManaged)/UnityEngine*.dll"><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(HarmonyPath)</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
