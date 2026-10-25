@@ -390,9 +390,18 @@ namespace Recovery.Rim3D
             }
 #else
             if (shaderBundle != null) return;
-            string path = Path.Combine(RootDir, "ShaderBundles", "rim3d-shaders");
+            string bundleName;
+            switch (Application.platform)
+            {
+                case RuntimePlatform.WindowsPlayer: bundleName = "rim3d-shaders"; break;
+                case RuntimePlatform.LinuxPlayer: bundleName = "rim3d-shaders-linux"; break;
+                case RuntimePlatform.OSXPlayer: bundleName = "rim3d-shaders-macos"; break;
+                default: throw new PlatformNotSupportedException("RimVision: unsupported platform " + Application.platform);
+            }
+            string path = Path.Combine(RootDir, "ShaderBundles", bundleName);
+            if (!File.Exists(path)) throw new FileNotFoundException("RimVision: shader bundle for " + Application.platform + " is missing. Reinstall the complete mod package.", path);
             shaderBundle = AssetBundle.LoadFromFile(path);
-            if (shaderBundle == null) throw new InvalidOperationException("RimVision: could not load shader bundle " + path);
+            if (shaderBundle == null) throw new InvalidOperationException("RimVision: could not load shader bundle " + path + " on " + Application.platform + " (" + SystemInfo.graphicsDeviceType + ")");
             foreach (var shader in shaderBundle.LoadAllAssets<Shader>()) shaders[shader.name] = shader;
 #endif
             foreach (string required in new[] { "PreviewSurface", "GroundShadow", "PreviewSky", "WeatherParticles", "Lightning", "Fire", "FirstPersonWeapon", "CombatTrail", "CombatBillboard", "Water", "AmbientOcclusion" })

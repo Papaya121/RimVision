@@ -29,6 +29,40 @@ namespace Recovery.Rim3D
         Map jumpMap;
         IntVec3 jumpCell;
         bool openingPreview;
+        MapView _cachedView;
+        Game _cachedGame;
+
+        void ClearCachedView()
+        {
+            var view = _cachedView;
+            _cachedView = null;
+            _cachedGame = null;
+            view?.Dispose();
+        }
+
+        internal bool CacheView(MapView view, Game game)
+        {
+            if (!view.IsBuilt || Current.Game != game || Current.ProgramState != ProgramState.Playing ||
+                !game.Maps.Contains(view.SpatialMap)) return false;
+            ClearCachedView();
+            view.SuspendView();
+            _cachedView = view;
+            _cachedGame = game;
+            return true;
+        }
+
+        internal MapView TakeCachedView(Map map)
+        {
+            if (_cachedGame != Current.Game || _cachedView?.SpatialMap != map)
+            {
+                ClearCachedView();
+                return null;
+            }
+            var view = _cachedView;
+            _cachedView = null;
+            _cachedGame = null;
+            return view;
+        }
 
         public void QueueCameraJump(Map map, IntVec3 cell)
         {
@@ -54,6 +88,8 @@ namespace Recovery.Rim3D
 
         void Update()
         {
+            if (_cachedView != null && (_cachedGame != Current.Game || Current.ProgramState != ProgramState.Playing ||
+                !Current.Game.Maps.Contains(_cachedView.SpatialMap))) ClearCachedView();
             if (ActiveWindow != null && (Find.WindowStack == null || !ActiveWindow.IsOpen))
             {
                 ActiveWindow.DisposeView();
@@ -129,6 +165,18 @@ namespace Recovery.Rim3D
             var window = new PreviewWindow(Find.CurrentMap, Find.Selector.SingleSelectedThing as Pawn);
             var game = Current.Game;
             openingPreview = true;
+            if (_cachedGame == game && _cachedView?.SpatialMap == window.Map)
+            {
+                try
+                {
+                    window.PrepareView();
+                    Find.WindowStack.Add(window);
+                    ActiveWindow = window;
+                }
+                catch (Exception error) { FailedToOpen(error); }
+                finally { openingPreview = false; }
+                return;
+            }
             // Unity objects and the first render must be prepared on the main thread.
             // The synchronous long event displays RimWorld's loading screen first.
             LongEventHandler.QueueLongEvent(() =>
@@ -154,8 +202,8 @@ namespace Recovery.Rim3D
             void FailedToOpen(Exception error)
             {
                 openingPreview = false;
+                window.DisposeView();
                 if (Find.WindowStack != null && window.IsOpen) window.Close(false);
-                else window.DisposeView();
                 Log.Error("RimVision preview: " + error);
             }
         }
@@ -163,6 +211,7 @@ namespace Recovery.Rim3D
         void OnDestroy()
         {
             if (ActiveWindow != null) ActiveWindow.DisposeView();
+            ClearCachedView();
             if (Instance == this) Instance = null;
         }
     }
@@ -204,8 +253,13 @@ namespace Recovery.Rim3D
         public void PrepareView()
         {
             if (View != null) return;
-            View = new MapView(Map);
-            View.Build();
+            View = Rim3DPreview.Instance?.TakeCachedView(Map);
+            if (View != null) View.ResumeView();
+            else
+            {
+                View = new MapView(Map);
+                View.Build();
+            }
             View.WarmupSpatialMaps();
             if (overview) View.SetOverviewStart(overviewStart);
             else if (preferredPawn != null && preferredPawn.Spawned && preferredPawn.Map == Map)
@@ -363,7 +417,14 @@ namespace Recovery.Rim3D
                 Current.ProgramState == ProgramState.Playing && game.Maps.Contains(Map)) return;
             base.Close(doCloseSound);
         }
-        public override void PostClose() { DisposeView(); base.PostClose(); }
+        public override void PostClose()
+        {
+            try
+            {
+                if (View != null && Rim3DPreview.Instance?.CacheView(View, game) == true) View = null;
+            }
+            finally { DisposeView(); base.PostClose(); }
+        }
         public override void OnCancelKeyPressed()
         {
             if (WorldRendererUtility.WorldSelected) return;
@@ -772,8 +833,11 @@ namespace Recovery.Rim3D
 #if UNITY_EDITOR
                 if (thing.def.category == ThingCategory.Building) editorBuildingNamesDirty = true;
 #endif
-                TrackActivityThing(thing);
-                TrackFireThing(thing);
+                if (!_sceneRetained)
+                {
+                    TrackActivityThing(thing);
+                    TrackFireThing(thing);
+                }
                 if (thing is Pawn pawn) OnPawnChanged(pawn);
                 if (thing is Corpse corpse && corpse.InnerPawn != null) OnPawnChanged(corpse.InnerPawn);
             }
@@ -1516,6 +1580,17 @@ namespace Recovery.Rim3D
                 _view.RebuildChunk(key);
                 UpdateWallDamage();
                 _geometryBudgetTicks += System.Diagnostics.Stopwatch.GetTimestamp() - started;
+            }
+
+            internal void FlushDirtyChunks()
+            {
+                while (_view.dirtyChunks.Count > 0)
+                {
+                    Vector2Int key;
+                    using (var iterator = _view.dirtyChunks.GetEnumerator()) { iterator.MoveNext(); key = iterator.Current; }
+                    _view.dirtyChunks.Remove(key);
+                    _view.RebuildChunk(key);
+                }
             }
 
             internal void RebuildChunk(Vector2Int key)

@@ -100,6 +100,17 @@ namespace Recovery.Rim3D
             while (steps < 64 && Stopwatch.GetTimestamp() < deadline);
         }
 
+        internal void RefreshRetainedGeometry()
+        {
+            foreach (var layer in _layers)
+                layer.Scene.RefreshRetainedGeometry();
+        }
+
+        internal void RetainScenes()
+        {
+            foreach (var layer in _layers) layer.Scene.RetainScene();
+        }
+
         void RefreshOffsets()
         {
             float activeHeight = _provider.Elevation(_active.SpatialMap);

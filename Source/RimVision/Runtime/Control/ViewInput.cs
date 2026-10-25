@@ -17,7 +17,11 @@ namespace Recovery.Rim3D
             Vector3 _previousMouse;
             int _lastAxisLookFrame = -10;
             int _lastVirtualLookFrame = -10;
+#if UNITY_EDITOR
             bool _mouseAxesAvailable = true;
+#else
+            bool _mouseAxesAvailable = false;
+#endif
 
             internal bool SneakHeld => ViewBindings.Held(ViewAction.Sneak);
             internal bool SprintHeld => ViewBindings.Held(ViewAction.Sprint);
@@ -39,6 +43,21 @@ namespace Recovery.Rim3D
             }
 
             internal void ResetMousePosition() => _previousMouse = Input.mousePosition;
+
+            internal float ReadMouseAxis(MapView view, bool horizontal)
+            {
+                if (NativeMouse.Available && view.mouseCaptured)
+                {
+                    if (!view.CanCaptureMouse || Time.frameCount == view.mouseCaptureFrame || !NativeMouse.Read(out var delta)) return 0;
+                    return (horizontal ? delta.x : -delta.y) * .1f;
+                }
+#if UNITY_EDITOR
+                return Input.GetAxisRaw(horizontal ? "RimVision Mouse X" : "RimVision Mouse Y");
+#else
+                var movement = Input.mousePosition - _previousMouse;
+                return (horizontal ? movement.x : movement.y) * .1f;
+#endif
+            }
 
             static float LookSensitivity(MapView view)
             {
@@ -67,7 +86,7 @@ namespace Recovery.Rim3D
                 {
                     if (NativeMouse.Available)
                     {
-                        if (NativeMouse.Read(out var delta))
+                        if (_lastAxisLookFrame != Time.frameCount && view.CanCaptureMouse && NativeMouse.Read(out var delta))
                         {
                             if (view.ConsumedApiAxis(API.RimVisionAxisSource.MouseX)) delta.x = 0;
                             if (view.ConsumedApiAxis(API.RimVisionAxisSource.MouseY)) delta.y = 0;

@@ -167,6 +167,15 @@ namespace Recovery.Rim3D.Multiplayer
         static readonly MethodInfo toggleSpeed = AccessTools.Method(timeControls, "TogglePaused");
         static readonly MethodInfo sendSpeed = AccessTools.Method(timeControls, "SendTimeVote");
         static readonly object[] normalSpeedVote = CreateNormalSpeedVote();
+        static readonly Action<Map, Faction, bool> _pushFaction = AccessTools.MethodDelegate<Action<Map, Faction, bool>>(
+            AccessTools.Method(AccessTools.TypeByName("Multiplayer.Client.Factions.FactionExtensions"), "PushFaction",
+                new[] { typeof(Map), typeof(Faction), typeof(bool) }));
+        static readonly Func<Map, Faction> _popFaction = AccessTools.MethodDelegate<Func<Map, Faction>>(
+            AccessTools.Method(AccessTools.TypeByName("Multiplayer.Client.Factions.FactionExtensions"), "PopFaction",
+                new[] { typeof(Map) }));
+
+        internal static void PushFaction(Map map, Faction faction) => _pushFaction(map, faction, false);
+        internal static void PopFaction(Map map) => _popFaction(map);
 
         static object[] CreateNormalSpeedVote()
         {

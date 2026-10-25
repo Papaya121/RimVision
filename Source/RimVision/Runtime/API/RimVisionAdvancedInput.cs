@@ -191,7 +191,8 @@ namespace Recovery.Rim3D
                         {
                             value = axis.Source == API.RimVisionAxisSource.Custom ? axis.Read(state) : axis.Source == API.RimVisionAxisSource.ScrollX ? Input.mouseScrollDelta.x :
                                 axis.Source == API.RimVisionAxisSource.ScrollY ? Input.mouseScrollDelta.y :
-                                Input.GetAxisRaw(axis.Source == API.RimVisionAxisSource.MouseX ? "RimVision Mouse X" : axis.Source == API.RimVisionAxisSource.MouseY ? "RimVision Mouse Y" : axis.UnityAxis);
+                                axis.Source == API.RimVisionAxisSource.MouseX ? ReadMouseAxis(view, true) :
+                                axis.Source == API.RimVisionAxisSource.MouseY ? ReadMouseAxis(view, false) : Input.GetAxisRaw(axis.UnityAxis);
                             if (!API.RimVisionControl.Finite(value)) value = 0;
                             if (Mathf.Abs(value) <= Rim3DSettings.Current.AxisDeadzone(entry.Id, axis.Deadzone)) value = 0;
                             if (Rim3DSettings.Current.AxisInverted(entry.Id, axis.Invert)) value = -value;

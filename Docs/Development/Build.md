@@ -39,9 +39,17 @@ dotnet build Source/RimVision/Rim3D.csproj -c Release -p:GameRoot='D:/SteamLibra
 
 ### Шейдеры
 
-Для обычной сборки используется `Mods/RimVision/ShaderBundles/rim3d-shaders`; Unity Editor не запускается. Изменение файлов в `Shaders` само по себе не меняет этот bundle. Зависимость самого мода от UnityEngine сохраняется: это движок RimWorld, его DLL берутся из игры.
+Для обычной сборки используются готовые пакеты из `Mods/RimVision/ShaderBundles`: `rim3d-shaders` (Windows), `rim3d-shaders-linux` (Linux) и `rim3d-shaders-macos` (macOS). `ModAssets` выбирает пакет по платформе Unity. Windows-пакет не подставляется вместо отсутствующего Linux/macOS-пакета. `Build.ps1` проверяет наличие всех трёх непустых файлов перед упаковкой и копирует их без пересборки; Unity Editor при этом не запускается.
 
-Локальный `BuildShaders.local.ps1` пересобирает bundle через Unity 2022.3.35f1 в фоновом режиме и обновляет его в `Mods/RimVision/ShaderBundles`. Для запуска двойным щелчком используйте `BuildShaders.local.bat`. Из консоли: `BuildShaders.local.bat -UnityEditor "путь/Editor/Unity.exe"`, если редактор находится в другом месте. Затем запустите `Build.bat` для упаковки мода. Старый Unity-проект не нужен: минимальный служебный проект, кэш, логи и предыдущий bundle сохраняются в `.shader-build`. Оба локальных скрипта шейдеров и служебная папка исключены из Git; они доступны только в этой локальной копии.
+`BuildShaders.ps1` без параметров последовательно собирает Windows, Linux и macOS через Unity 2022.3.35f1; `-Platform` позволяет выбрать одну платформу. Такой же режим по умолчанию использует локальный `BuildShaders.local.bat`. В Unity должны быть установлены соответствующие модули Windows/Linux/Mac Build Support. Скрипт явно включает Direct3D11/OpenGLCore/Vulkan для Windows, OpenGLCore/Vulkan для Linux и Metal/OpenGLCore для macOS. Если редактор не выбрал запрошенную платформу или компиляция завершилась с ошибкой, готовый пакет не заменяется. Загрузка и проверка количества Shader-объектов выполняются только при совпадении платформы пакета с платформой редактора; проверка кросс-сборки не подтверждает работу на целевой ОС.
+
+```powershell
+pwsh -File ./BuildShaders.ps1 -Platform Windows
+pwsh -File ./BuildShaders.ps1 -Platform Linux
+pwsh -File ./BuildShaders.ps1 -Platform macOS
+```
+
+Другой путь редактора задаётся через `-UnityEditor 'путь/Editor/Unity.exe'`. Затем запустите `Build.bat` для упаковки. Служебный проект, кэш, логи и предыдущие версии пакетов находятся в исключённой из Git `.shader-build`. Исходники в `Shaders` сами по себе не меняют готовые пакеты. Старый Windows bundle сохраняется до явной успешной пересборки. Изменения общих шейдеров нужно собирать для всех трёх платформ. Существующая локальная `BuildShaders.local.bat` вызывает тот же сборщик через локальную PowerShell-обёртку.
 
 ## Blender и модели
 

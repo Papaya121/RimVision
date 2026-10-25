@@ -200,23 +200,32 @@ namespace Recovery.Rim3D.Multiplayer
                 {
                     var session = sessions[i];
                     var pawn = session?.Controller?.Pawn;
-                    if (Rim3DMultiplayer.Active && RimVisionControl.MapFor(pawn) != null && RimVisionControl.MapFor(pawn) != map && tick < session.LeaseUntil)
+                    bool switchFaction = Rim3DMultiplayer.Active && pawn?.Faction?.IsPlayer == true && pawn.Faction != RimWorld.Faction.OfPlayer;
+                    if (switchFaction) Adapter.PushFaction(map, pawn.Faction);
+                    try
                     {
-                        TransferPawn(pawn);
-                        continue;
+                        if (Rim3DMultiplayer.Active && RimVisionControl.MapFor(pawn) != null && RimVisionControl.MapFor(pawn) != map && tick < session.LeaseUntil)
+                        {
+                            TransferPawn(pawn);
+                            continue;
+                        }
+                        if (Rim3DMultiplayer.Active && pawn != null && RimVisionControl.MapFor(pawn) == null && !pawn.Dead && tick < session.LeaseUntil)
+                        { session.View.CancelNativeCombatInput(); continue; }
+                        if (session?.Controller == null || !Rim3DMultiplayer.Active || !session.Controller.Observing || RimVisionControl.MapFor(session.Controller.Pawn) != map || tick >= session.LeaseUntil)
+                        { Remove(i); continue; }
+                        bool fresh = tick < session.InputUntil;
+                        if (session.Controller.InputBlocked) session.View.CancelSimulationConstruction();
+                        session.Controller.Sneaking = fresh && session.Sneaking;
+                        session.Controller.Sprinting = fresh && session.Sprinting;
+                        session.Controller.SetNativeAxes(fresh ? session.Vertical : 0, session.ExtendedLook ? session.LookPitch : session.Pitch,
+                            session.ExtendedLook ? session.LookYaw : session.Yaw);
+                        session.Controller.Move(fresh ? new Vector2(session.X, session.Z) : Vector2.zero, session.Yaw, 1f / 60f, false);
+                        session.View.SimulationTick();
                     }
-                    if (Rim3DMultiplayer.Active && pawn != null && RimVisionControl.MapFor(pawn) == null && !pawn.Dead && tick < session.LeaseUntil)
-                    { session.View.CancelNativeCombatInput(); continue; }
-                    if (session?.Controller == null || !Rim3DMultiplayer.Active || !session.Controller.Observing || RimVisionControl.MapFor(session.Controller.Pawn) != map || tick >= session.LeaseUntil)
-                    { Remove(i); continue; }
-                    bool fresh = tick < session.InputUntil;
-                    if (session.Controller.InputBlocked) session.View.CancelSimulationConstruction();
-                    session.Controller.Sneaking = fresh && session.Sneaking;
-                    session.Controller.Sprinting = fresh && session.Sprinting;
-                    session.Controller.SetNativeAxes(fresh ? session.Vertical : 0, session.ExtendedLook ? session.LookPitch : session.Pitch,
-                        session.ExtendedLook ? session.LookYaw : session.Yaw);
-                    session.Controller.Move(fresh ? new Vector2(session.X, session.Z) : Vector2.zero, session.Yaw, 1f / 60f, false);
-                    session.View.SimulationTick();
+                    finally
+                    {
+                        if (switchFaction) Adapter.PopFaction(map);
+                    }
                 }
             }
         }

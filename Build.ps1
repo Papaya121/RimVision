@@ -65,9 +65,13 @@ if ($selected.Id -contains 'Multiplayer') {
     $mpApi = Join-Path $MultiplayerRoot 'Assemblies/0MultiplayerAPI.dll'
     if (!(Test-Path -LiteralPath $mpApi -PathType Leaf)) { throw "Required dependency missing: $mpApi. Use -Mod Core to build only RimVision." }
 }
-$shaderBundle = Join-Path $repoRoot 'Mods/RimVision/ShaderBundles/rim3d-shaders'
-if ($selected.Id -contains 'Core' -and !(Test-Path -LiteralPath $shaderBundle -PathType Leaf)) {
-    throw "Precompiled shader bundle missing: $shaderBundle"
+if ($selected.Id -contains 'Core') {
+    foreach ($bundleName in @('rim3d-shaders', 'rim3d-shaders-linux', 'rim3d-shaders-macos')) {
+        $shaderBundle = Join-Path $repoRoot "Mods/RimVision/ShaderBundles/$bundleName"
+        if (!(Test-Path -LiteralPath $shaderBundle -PathType Leaf) -or (Get-Item -LiteralPath $shaderBundle).Length -eq 0) {
+            throw "Precompiled shader bundle missing or empty: $shaderBundle. Run BuildShaders.ps1 for Windows, Linux and macOS before packaging."
+        }
+    }
 }
 
 function Copy-Content([string]$From, [string]$To) {

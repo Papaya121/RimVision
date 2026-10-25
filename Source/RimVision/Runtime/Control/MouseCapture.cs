@@ -52,7 +52,7 @@ namespace Recovery.Rim3D
                 // Also hide Unity's emulated custom cursor in the editor Game view.
                 Cursor.SetCursor(_hiddenCursor, Vector2.zero, CursorMode.ForceSoftware);
             }
-            var desiredLock = NativeMouse.Available ? CursorLockMode.None : CursorLockMode.Locked; if (Cursor.lockState != desiredLock)
+            var desiredLock = NativeMouse.RequiresCursorLock ? CursorLockMode.Locked : CursorLockMode.None; if (Cursor.lockState != desiredLock)
             {
                 Cursor.lockState = desiredLock;
                 // A native lock reset is not a new session. Do not discard look every frame.
@@ -64,6 +64,7 @@ namespace Recovery.Rim3D
         {
             if (!_captured) return false;
             _captured = false;
+            NativeMouse.Release();
             if (Prefs.CustomCursorEnabled) CustomCursor.Activate();
             else CustomCursor.Deactivate();
             Cursor.lockState = _previousCursorLock;

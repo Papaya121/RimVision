@@ -674,6 +674,12 @@ namespace Recovery.Rim3D
 
         void DisposeFPV()
         {
+            EndFPVSession();
+            designationIcons.Clear();
+        }
+
+        void EndFPVSession()
+        {
             _actionMenus.CloseOrdersMenu();
             _orders?.Dispose();
             _orders = null;
@@ -689,7 +695,6 @@ namespace Recovery.Rim3D
             billWindow?.Close(false);
             billWindow = null;
             DisposeImmersion();
-            designationIcons.Clear();
             buildCatalog.Clear(); filteredBuildCatalog.Clear(); buildCategories.Clear(); buildStuffs.Clear(); aimCandidates.Clear();
             buildTool = null; aimedThing = null; constructionDef = null;
             ResetBuildDrag();
