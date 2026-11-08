@@ -401,6 +401,9 @@
   <Rim3D_SettingHullOutlineWidth>Толщина чёрной оболочки: {0} пикс.</Rim3D_SettingHullOutlineWidth>
   <Rim3D_SettingInvertMouseY>Инвертировать мышь по вертикали</Rim3D_SettingInvertMouseY>
   <Rim3D_SettingRenderScale>Масштаб рендера 3D: {0}%</Rim3D_SettingRenderScale>
+  <Rim3D_SettingViewDistance>Дальность видимости: {0} клеток</Rim3D_SettingViewDistance>
+  <Rim3D_SettingViewDistanceUnlimited>Дальность видимости: без ограничения</Rim3D_SettingViewDistanceUnlimited>
+  <Rim3D_SettingViewDistanceHint>Ограничивает дальность отрисовки 3D, включая соседние карты. Меньшие значения сокращают отрисовку вдали. В свободном обзоре добавляется расстояние камеры до центра обзора. Миномётный прицел и ортографические камеры сохраняют полный обзор. Крайнее левое положение сохраняет прежнюю дальность по размеру карты. Применяется сразу; симуляция пешек не меняется.</Rim3D_SettingViewDistanceHint>
   <Rim3D_SettingMaxPawnTextureResolution>Макс. разрешение захвата пешек и животных: {0} пикс.</Rim3D_SettingMaxPawnTextureResolution>
   <Rim3D_SettingMaxPawnTextureResolutionHint>Разрешение зависит от исходных текстур тела, одежды и других деталей. Ограничивается длинная сторона захвата; большие значения требуют больше видеопамяти. Применяется сразу.</Rim3D_SettingMaxPawnTextureResolutionHint>
   <Rim3D_SettingFieldOfView>Угол обзора от первого лица: {0}°</Rim3D_SettingFieldOfView>
@@ -696,4 +699,11 @@
   <Rim3D_ApiInvert>Инвертировать</Rim3D_ApiInvert>
   <Rim3D_ApiDeadzone>Мёртвая зона: {0}</Rim3D_ApiDeadzone>
   <Rim3D_ApiContractMismatch>Контракты API RimVision отличаются от {0}. Проверьте версии и игровые аддоны.</Rim3D_ApiContractMismatch>
+  <Rim3D_SettingsSectionPerformance>Диагностика производительности</Rim3D_SettingsSectionPerformance>
+  <Rim3D_SettingPerformanceHint>Ctrl+Shift+F10 начинает запись на 60 секунд; повторное нажатие завершает её раньше. После двух секунд подготовки сравните одну сцену в 2D, активном 3D и 3D на паузе. Сохраняет FPS/TPS, худшие кадры, время CPU и список модов в текстовый файл рядом с сохранениями игры: RimVision/Performance. Инструментирование добавляет нагрузку только во время записи. Файл никуда не отправляется.</Rim3D_SettingPerformanceHint>
+  <Rim3D_PerformanceStart>Записать отчёт за 60 секунд</Rim3D_PerformanceStart>
+  <Rim3D_PerformanceStop>Завершить запись и сохранить (осталось {0} с)</Rim3D_PerformanceStop>
+  <Rim3D_PerformanceCopyPath>Скопировать путь к отчёту</Rim3D_PerformanceCopyPath>
+  <Rim3D_PerformanceStarted>RimVision: запись производительности начата. После 2 секунд подготовки записывается 60 секунд. Сравните 2D, активный 3D и 3D на паузе. Ctrl+Shift+F10 — завершить раньше.</Rim3D_PerformanceStarted>
+  <Rim3D_PerformanceSaved>RimVision: отчёт производительности сохранён: {0}</Rim3D_PerformanceSaved>
 </LanguageData>

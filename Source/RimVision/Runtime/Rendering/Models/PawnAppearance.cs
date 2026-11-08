@@ -9,6 +9,13 @@ namespace Recovery.Rim3D
     public sealed partial class MapView
     {
         int pawnTextureResolutionLimit;
+        readonly Plane[] _pawnPresentationPlanes = new Plane[6];
+        bool _pawnPresentationReady;
+        static int _pawnAppearanceFrame = -1;
+        static long _pawnAppearanceTicks;
+        int _lastPawnAppearanceFrame = -1;
+        int _pawnPresentationCursor;
+        bool _synchronousPawnAppearance;
 
         static int PawnSourceResolution(Pawn pawn, Rot4 facing)
         {
@@ -62,6 +69,7 @@ namespace Recovery.Rim3D
 
         sealed class PawnView
         {
+            public bool AppearanceDeferred = true;
             public readonly PawnDirection[] Directions = new PawnDirection[4];
             public Material Material;
             public Mesh Mesh;
@@ -96,6 +104,7 @@ namespace Recovery.Rim3D
             public float VisibleHeight;
             public float CaptureScale = 1;
             public byte[] Mask;
+            public WorldGeometry.SpriteAnalysis Analysis;
             public Rect VisibleBounds = new Rect(0, 0, 1, 1);
         }
 
@@ -103,6 +112,113 @@ namespace Recovery.Rim3D
         readonly HashSet<Pawn> dirtyPawnAppearances = new HashSet<Pawn>();
         readonly HashSet<Pawn> pronePawns = new HashSet<Pawn>();
         readonly List<Pawn> pawnAppearanceWork = new List<Pawn>();
+
+        void PreparePawnPresentation()
+        {
+            GeometryUtility.CalculateFrustumPlanes(camera, _pawnPresentationPlanes);
+            _pawnPresentationReady = true;
+        }
+
+        bool PawnPresentationRelevant(Pawn pawn, Thing body)
+        {
+            if (!_pawnPresentationReady || pawn == ControlledPawn || API.RimVisionPresentation.HasProviders ||
+                API.RimVisionModels.Providers.Entries.Length > 0) return true;
+            var position = body.DrawPos;
+            position.y = body is Corpse ? GroundThingSurfaceHeight(position) : API.RimVisionSpatial.Height(pawn, position);
+            float radius = Mathf.Max(3, Mathf.Sqrt(pawn.BodySize) * 2);
+            if (pawnViews.TryGetValue(pawn, out var view))
+            {
+                radius = Mathf.Max(radius, Mathf.Max(view.Width, view.Height));
+                if (view.AnimalModel != null)
+                    radius = Mathf.Max(radius, view.AnimalBounds.center.magnitude + view.AnimalBounds.extents.magnitude);
+            }
+            var drawSize = pawn.def.graphicData?.drawSize ?? Vector2.one;
+            radius = Mathf.Max(radius, Mathf.Max(drawSize.x, drawSize.y));
+            var bounds = new Bounds(root.transform.position + position + Vector3.up * radius * .5f,
+                Vector3.one * radius * 2);
+            var bed = pawn.CurrentBed();
+            if (bed != null) bounds.Encapsulate(root.transform.position + bed.TrueCenter() + Vector3.up * 2);
+            if (workSurfaceIngredients.TryGetValue(body, out var table))
+                bounds.Encapsulate(root.transform.position + table.TrueCenter() + Vector3.up * 2);
+            if (Rim3DSettings.Current.EffectsEnabled(Rim3DSettings.Current.GroundShadows))
+                bounds.Encapsulate(_worldGeometry.ProjectedShadowBounds(bounds));
+            return GeometryUtility.TestPlanesAABB(_pawnPresentationPlanes, bounds);
+        }
+
+        void UpdatePawnPresentation(Vector3 position)
+        {
+            if (_pawnAppearanceFrame != Time.frameCount)
+            {
+                _pawnAppearanceFrame = Time.frameCount;
+                _pawnAppearanceTicks = 0;
+            }
+            pawnAppearanceWork.Clear();
+            pawnAppearanceWork.AddRange(pawnViews.Keys);
+            int nextCapture = -1;
+            for (int i = 0; i < pawnAppearanceWork.Count; i++)
+            {
+                int index = (_pawnPresentationCursor + i) % pawnAppearanceWork.Count;
+                var pawn = pawnAppearanceWork[index];
+                var view = pawnViews[pawn];
+                Thing body = pawn.Corpse != null ? (Thing)pawn.Corpse : pawn;
+                bool defaultVisible = pawn != ControlledPawn || _viewCamera.HasFrame && _viewCamera.Frame.ShowBody || MortarAiming || cameraFlight && (position - controller.Position).sqrMagnitude > 4f;
+                bool visible = body.Spawned && body.Map == map && !map.fogGrid.IsFogged(body.Position) && DrawSpatialThing(body) &&
+                    (body is Corpse ? defaultVisible : API.RimVisionPresentation.DrawPawn(pawn, FirstPerson ? ControlledPawn : null, defaultVisible));
+                if (visible && PawnPresentationRelevant(pawn, body))
+                {
+                    if (pawn == ControlledPawn || _lastPawnAppearanceFrame != Time.frameCount ||
+                        _pawnAppearanceTicks < System.Diagnostics.Stopwatch.Frequency / 500)
+                        PreparePawnAppearance(pawn, body);
+                    else view.AppearanceDeferred = true;
+                    if (view.AppearanceDeferred && nextCapture < 0) nextCapture = index;
+                }
+                else view.AppearanceDeferred = true;
+                if (!pawnCards.TryGetValue(pawn, out var card)) continue;
+                if (card.gameObject.activeSelf != visible) card.gameObject.SetActive(visible);
+                if (body.Spawned && body.Map == map && !map.fogGrid.IsFogged(body.Position)) PositionPawnCard(pawn, body, card);
+            }
+            _pawnPresentationCursor = nextCapture < 0 ? 0 : nextCapture;
+            pawnAppearanceWork.Clear();
+        }
+
+        void PreparePawnAppearance(Pawn pawn, Thing body, bool synchronous = false)
+        {
+            if (_pawnAppearanceFrame != Time.frameCount)
+            {
+                _pawnAppearanceFrame = Time.frameCount;
+                _pawnAppearanceTicks = 0;
+            }
+            _lastPawnAppearanceFrame = Time.frameCount;
+            long started = System.Diagnostics.Stopwatch.GetTimestamp();
+            bool previous = _synchronousPawnAppearance;
+            _synchronousPawnAppearance = synchronous;
+            try { UpdatePawnView(pawn, body); }
+            finally
+            {
+                _synchronousPawnAppearance = previous;
+                _pawnAppearanceTicks += System.Diagnostics.Stopwatch.GetTimestamp() - started;
+            }
+        }
+
+        float PawnCollisionSpriteTop(Pawn pawn)
+        {
+            RefreshPawnForPicking(pawn);
+            return PawnSpriteTop(pawn);
+        }
+
+        void RefreshPawnForPicking(Pawn pawn)
+        {
+            if (_apiDisposed || simulationOnly || root == null || !pawnViews.TryGetValue(pawn, out var view) || !view.AppearanceDeferred) return;
+            Thing body = pawn.Corpse != null ? (Thing)pawn.Corpse : pawn;
+            if (!body.Spawned || body.Map != map || map.fogGrid.IsFogged(body.Position)) return;
+            Rand.PushState();
+            try
+            {
+                PreparePawnAppearance(pawn, body, true);
+                if (pawnCards.TryGetValue(pawn, out var card)) PositionPawnCard(pawn, body, card);
+            }
+            finally { Rand.PopState(); }
+        }
 
         // The upright surface faces the camera; its artwork shows the pawn's
         // world direction relative to that camera, just like RimWorld's Rot4 views.
@@ -374,6 +490,7 @@ namespace Recovery.Rim3D
 
         float? RaycastPawnSprite(Pawn pawn, Ray ray, bool includeGroundBodyVolume)
         {
+            RefreshPawnForPicking(pawn);
             if (pawnViews.TryGetValue(pawn, out var modelView) && modelView.AnimalModel != null &&
                 pawnCards.TryGetValue(pawn, out var modelCard))
             {
@@ -518,14 +635,15 @@ namespace Recovery.Rim3D
                 // Apparel, wounds and pose invalidate every cached direction.
                 if (pawnViews.TryGetValue(pawn, out var view))
                 {
+                    view.AppearanceDeferred = true;
                     view.AnimalModelChecked = false;
                     foreach (var direction in view.Directions)
-                        if (direction != null) direction.Valid = false;
-                    if (view.BedHead != null) view.BedHead.Valid = false;
+                        if (direction != null) { direction.Valid = false; direction.Analysis = null; }
+                    if (view.BedHead != null) { view.BedHead.Valid = false; view.BedHead.Analysis = null; }
                 }
                 Thing body = pawn.Corpse != null ? (Thing)pawn.Corpse : pawn;
                 if (!body.Spawned || body.Map != map || map.fogGrid.IsFogged(body.Position)) continue;
-                UpdatePawnView(pawn, body);
+                if (view == null) pawnViews.Add(pawn, new PawnView());
             }
             pawnAppearanceWork.Clear();
         }
@@ -580,6 +698,7 @@ namespace Recovery.Rim3D
                                 RemovePawnGeometry(pawn, view);
                                 var modelRoot = new GameObject("RimVision animal: " + pawn.LabelShort)
                                     { layer = Layer, hideFlags = HideFlags.DontSave };
+                                modelRoot.SetActive(false);
                                 modelRoot.transform.SetParent(root.transform, false);
                                 pawnCards.Add(pawn, modelRoot.transform);
                                 var previousParent = geometryParent;
@@ -631,7 +750,12 @@ namespace Recovery.Rim3D
             bool headOnly = bed != null && pawn.RaceProps.Humanlike && !bed.def.building.bed_showSleeperBody;
             if (!pawnViews.TryGetValue(pawn, out var view))
                 pawnViews.Add(pawn, view = new PawnView());
-            if (pawn.RaceProps.Animal && TryUpdateAnimalModel(pawn, body, view, prone, bed)) return;
+            view.AppearanceDeferred = true;
+            if (pawn.RaceProps.Animal && TryUpdateAnimalModel(pawn, body, view, prone, bed))
+            {
+                view.AppearanceDeferred = false;
+                return;
+            }
             var facing = PawnViewDirection(pawn, prone);
             bool animalFrontRear = !prone && pawn.RaceProps.Animal &&
                 (facing == Rot4.North || facing == Rot4.South);
@@ -643,7 +767,11 @@ namespace Recovery.Rim3D
                 facing = relativeAngle >= 0 ? Rot4.East : Rot4.West;
             }
             var direction = headOnly ? view.BedHead : view.Directions[facing.AsInt];
-            if (direction != null && direction.Valid && view.Direction == facing.AsInt && view.Prone == prone && view.Bed == bed && view.HeadOnly == headOnly) return;
+            if (direction != null && direction.Valid && view.Direction == facing.AsInt && view.Prone == prone && view.Bed == bed && view.HeadOnly == headOnly)
+            {
+                view.AppearanceDeferred = false;
+                return;
+            }
             try
             {
                 if (direction == null)
@@ -655,11 +783,16 @@ namespace Recovery.Rim3D
                 bool refresh = !direction.Valid;
                 if (refresh)
                 {
-                    direction.CaptureScale = headOnly ? 1 : PawnPortraitScale(pawn, facing);
-                    // Match source detail up to the user's cap. Inspect native
-                    // render nodes only when appearance changes, never per frame.
-                    EnsurePawnCaptureTexture(ref direction.Texture, pawn, facing, headOnly);
-                    CapturePawnAppearance(pawn, direction.Texture, facing, direction.CaptureScale, headOnly);
+                    if (direction.Analysis == null)
+                    {
+                        if (!_synchronousPawnAppearance && !_worldGeometry.CanQueueSpriteAnalysis) return;
+                        direction.CaptureScale = headOnly ? 1 : PawnPortraitScale(pawn, facing);
+                        EnsurePawnCaptureTexture(ref direction.Texture, pawn, facing, headOnly);
+                        CapturePawnAppearance(pawn, direction.Texture, facing, direction.CaptureScale, headOnly);
+                        direction.Analysis = _worldGeometry.BeginSpriteAnalysis(direction.Texture, Vector2.one, Vector2.zero, 1,
+                            !_synchronousPawnAppearance);
+                    }
+                    if (!_worldGeometry.CompleteSpriteAnalysis(direction.Analysis, _synchronousPawnAppearance)) return;
                 }
                 if (view.Material == null)
                 {
@@ -672,22 +805,16 @@ namespace Recovery.Rim3D
                     shadow.mainTexture = direction.Texture;
                 if (refresh)
                 {
-                    bottomPadding.Remove(material);
-                    visibleSpriteHeights.Remove(material);
-                    spriteMasks.Remove(material);
-                    direction.Padding = BottomPadding(material);
-                    visibleSpriteHeights.TryGetValue(material, out direction.VisibleHeight);
-                    spriteMasks.TryGetValue(material, out direction.Mask);
+                    direction.Padding = direction.Analysis.Padding;
+                    direction.VisibleHeight = direction.Analysis.VisibleHeight;
+                    direction.Mask = direction.Analysis.Mask;
                     direction.VisibleBounds = PawnVisibleBounds(direction.Mask);
                     direction.Valid = true;
                 }
-                else
-                {
-                    bottomPadding[material] = direction.Padding;
-                    visibleSpriteHeights[material] = direction.VisibleHeight;
-                    if (direction.Mask != null) spriteMasks[material] = direction.Mask;
-                    else spriteMasks.Remove(material);
-                }
+                bottomPadding[material] = direction.Padding;
+                visibleSpriteHeights[material] = direction.VisibleHeight;
+                if (direction.Mask != null) spriteMasks[material] = direction.Mask;
+                else spriteMasks.Remove(material);
 
                 var geometry = new Geometry();
                 // Compensate for the wider capture so large animals keep their
@@ -720,6 +847,7 @@ namespace Recovery.Rim3D
                     try { card = CreateMesh(material, geometry, "Pawn: " + pawn.LabelShort).transform; }
                     finally { geometryParent = previousParent; }
                     pawnCards.Add(pawn, card);
+                    card.gameObject.SetActive(false);
                     view.Mesh = card.GetComponent<MeshFilter>().sharedMesh;
                 }
                 else
@@ -738,6 +866,7 @@ namespace Recovery.Rim3D
                     width * direction.VisibleBounds.width, height * direction.VisibleBounds.height) : 0;
                 view.Width = width;
                 view.Height = height;
+                view.AppearanceDeferred = false;
                 if (prone) pronePawns.Add(pawn); else pronePawns.Remove(pawn);
                 PositionPawnCard(pawn, body, card);
             }

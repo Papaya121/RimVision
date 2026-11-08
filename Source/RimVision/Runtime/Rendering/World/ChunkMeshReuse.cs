@@ -51,11 +51,13 @@ namespace Recovery.Rim3D
             internal void FinishChunkReuse()
             {
                 // Reused objects have already moved out; only discarded meshes remain here.
-                if (_chunkReuseRoot != null) _view.RemoveMovingShadows(_chunkReuseRoot.transform);
+                if (_chunkReuseRoot != null && _chunkReuseRoot.transform.childCount != 0)
+                    _view.RemoveMovingShadows(_chunkReuseRoot.transform);
                 foreach (var queue in _chunkMeshReuse.Values)
                     while (queue.Count != 0)
                     {
                         var obj = queue.Dequeue();
+                        _view._outlines.UnregisterOutlineRenderer(obj.GetComponent<MeshRenderer>());
                         var mesh = obj.GetComponent<MeshFilter>().sharedMesh;
                         _view.meshes.Remove(mesh);
                         UnityEngine.Object.Destroy(mesh);

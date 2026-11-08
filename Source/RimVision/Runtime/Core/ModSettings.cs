@@ -100,6 +100,8 @@ namespace Recovery.Rim3D
         internal bool ShootWhileRunningEnabled => Rim3DMultiplayer.Active
             ? Rim3DMultiplayer.ShootWhileRunningAllowed?.Invoke() == true : _shootWhileRunning;
         public float FieldOfView = 75, MouseSensitivity = 1, RenderScale = 1;
+        float _viewDistance = 200;
+        internal float ViewDistance => _viewDistance;
         public float NightBrightness = 1;
         public int MaxPawnTextureResolution = 1024;
         int _mountainSimplification = 2;
@@ -175,6 +177,7 @@ namespace Recovery.Rim3D
             Scribe_Values.Look(ref FieldOfView, "fieldOfView", 75);
             Scribe_Values.Look(ref MouseSensitivity, "mouseSensitivity", 1);
             Scribe_Values.Look(ref RenderScale, "renderScale", 1);
+            Scribe_Values.Look(ref _viewDistance, "viewDistance", 200);
             Scribe_Values.Look(ref NightBrightness, "nightBrightness", 1);
             Scribe_Values.Look(ref MaxPawnTextureResolution, "maxPawnTextureResolution", 1024);
             Scribe_Values.Look(ref _mountainSimplification, "mountainSimplification", 2);
@@ -186,6 +189,8 @@ namespace Recovery.Rim3D
             FieldOfView = Clamp(FieldOfView, 50, 110, 75);
             MouseSensitivity = Clamp(MouseSensitivity, .2f, 3, 1);
             RenderScale = Clamp(RenderScale, .5f, 1.5f, 1);
+            _viewDistance = Clamp(_viewDistance, 0, 1000, 200);
+            if (_viewDistance > 0) _viewDistance = Mathf.Max(50, _viewDistance);
             NightBrightness = Clamp(NightBrightness, 1, 4, 1);
             _ambientOcclusionIntensity = Clamp(_ambientOcclusionIntensity, 0, 2, 1);
             _walkCameraBobIntensity = Clamp(_walkCameraBobIntensity, 0, 5, 1);
@@ -243,6 +248,7 @@ namespace Recovery.Rim3D
             DisablePlantSlowdown = false;
             _shootWhileRunning = false;
             FieldOfView = 75; MouseSensitivity = RenderScale = 1;
+            _viewDistance = 200;
             NightBrightness = 1;
             MaxPawnTextureResolution = 1024;
             _mountainSimplification = 2;
@@ -327,6 +333,11 @@ namespace Recovery.Rim3D
             Hint(list, "PlantWind");
             list.Label("Rim3D_SettingRenderScale".Translate(Mathf.RoundToInt(RenderScale * 100)));
             RenderScale = Mathf.Round(list.Slider(RenderScale, .5f, 1.5f) * 20) / 20;
+            list.Label(_viewDistance > 0
+                ? "Rim3D_SettingViewDistance".Translate(Mathf.RoundToInt(_viewDistance))
+                : "Rim3D_SettingViewDistanceUnlimited".Translate());
+            _viewDistance = Mathf.Round(list.Slider(_viewDistance, 0, 1000) / 50) * 50;
+            Hint(list, "ViewDistance");
             list.Label("Rim3D_SettingMaxPawnTextureResolution".Translate(MaxPawnTextureResolution));
             MaxPawnTextureResolution = 1 << Mathf.RoundToInt(list.Slider(
                 Mathf.Log(MaxPawnTextureResolution, 2), 7, 12));
@@ -343,6 +354,20 @@ namespace Recovery.Rim3D
             list.Label("Rim3D_SettingNightBrightness".Translate(Mathf.RoundToInt(NightBrightness * 100)));
             NightBrightness = Mathf.Round(list.Slider(NightBrightness, 1, 4) * 20) / 20;
             Hint(list, "NightBrightness");
+            Section(list, "Performance");
+            Hint(list, "Performance");
+            bool enabled = GUI.enabled;
+            GUI.enabled = enabled && Verse.Current.ProgramState == ProgramState.Playing && Find.CurrentMap != null;
+            if (list.ButtonText(PerformanceCapture.Active
+                ? "Rim3D_PerformanceStop".Translate(PerformanceCapture.SecondsRemaining)
+                : "Rim3D_PerformanceStart".Translate())) PerformanceCapture.Toggle();
+            GUI.enabled = enabled;
+            if (!string.IsNullOrEmpty(PerformanceCapture.LastReportPath))
+            {
+                list.Label(PerformanceCapture.LastReportPath);
+                if (list.ButtonText("Rim3D_PerformanceCopyPath".Translate()))
+                    GUIUtility.systemCopyBuffer = PerformanceCapture.LastReportPath;
+            }
         }
 
         void DrawWorld(Listing_Standard list)

@@ -230,6 +230,12 @@ namespace Recovery.Rim3D
                     }
                 }
                 frame.Pose = new API.RimVisionPose(position, rotation);
+                float viewDistance = Rim3DSettings.Current.ViewDistance;
+                if (viewDistance > 0 && !view.MortarAiming && !frame.Orthographic)
+                {
+                    float cameraOffset = view.FirstPerson ? 0 : Vector3.Distance(position, _focus);
+                    frame.FarClip = Mathf.Max(frame.NearClip + 1, Mathf.Min(frame.FarClip, viewDistance + cameraOffset));
+                }
                 _distance = frame.OrbitDistance;
                 _frame = frame;
                 HasFrame = true;

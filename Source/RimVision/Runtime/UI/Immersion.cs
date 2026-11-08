@@ -14,7 +14,7 @@ namespace Recovery.Rim3D
         static readonly string[] StatusLabels = { "Rim3D_TabHealth", "Rim3D_TabSkills", "Rim3D_TabInventory", "Rim3D_TabMood", "Rim3D_TabSocial" };
         MainTabWindow colonyWindow;
 
-        public bool PausedByPlayer { get; private set; }
+        public bool PausedByPlayer { get; internal set; }
         public bool StatusMenuOpen => FirstPerson && !controller.InputBlocked && statusMenu;
         bool ColonyTabOpen => Find.MainTabsRoot.OpenTab != null;
         bool ExternalInputBlocked => ColonyTabOpen || ExternalDialogInputBlocked;

@@ -88,6 +88,7 @@ namespace Recovery.Rim3D
 
         void Update()
         {
+            PerformanceCapture.Update();
             if (_cachedView != null && (_cachedGame != Current.Game || Current.ProgramState != ProgramState.Playing ||
                 !Current.Game.Maps.Contains(_cachedView.SpatialMap))) ClearCachedView();
             if (ActiveWindow != null && (Find.WindowStack == null || !ActiveWindow.IsOpen))
@@ -210,6 +211,7 @@ namespace Recovery.Rim3D
 
         void OnDestroy()
         {
+            PerformanceCapture.Stop("preview controller destroyed");
             if (ActiveWindow != null) ActiveWindow.DisposeView();
             ClearCachedView();
             if (Instance == this) Instance = null;
@@ -228,6 +230,9 @@ namespace Recovery.Rim3D
         bool initialPerspectivePending;
         public MapView View { get; private set; }
         bool NativeViewOpen => WorldRendererUtility.WorldSelected || Find.MainTabsRoot.OpenTab == MainButtonDefOf.Architect;
+        internal bool CoversNativeMap => IsOpen && Current.Game == game && Current.ProgramState == ProgramState.Playing &&
+            View?.IsBuilt == true && View.DisplayTarget != null &&
+            !NativeViewOpen && !LongEventHandler.ShouldWaitForEvent;
         public override Vector2 InitialSize => new Vector2(UI.screenWidth, UI.screenHeight);
         protected override float Margin => 0;
         public PreviewWindow(Map map, Pawn preferredPawn = null, bool overview = false, Vector3 overviewStart = default)
@@ -347,7 +352,12 @@ namespace Recovery.Rim3D
             forcePause = !firstPerson || View.StatusMenuOpen;
             if (firstPerson)
             {
-                if (!speedOverridden) { previousSpeed = Find.TickManager.CurTimeSpeed; speedOverridden = true; }
+                if (!speedOverridden)
+                {
+                    previousSpeed = Find.TickManager.CurTimeSpeed;
+                    View.PausedByPlayer = previousSpeed == TimeSpeed.Paused;
+                    speedOverridden = true;
+                }
                 Find.TickManager.CurTimeSpeed = View.PausedByPlayer ? TimeSpeed.Paused :
                     View.AcceleratingSleep || View.AcceleratingAction ? TimeSpeed.Superfast : TimeSpeed.Normal;
             }
@@ -1250,31 +1260,14 @@ namespace Recovery.Rim3D
             camera.transform.localPosition = position;
             camera.transform.localRotation = rotation;
             UpdateAudioListener(position, rotation);
+            PreparePawnPresentation();
             UpdateHeldThings();
             UpdateSceneActors(position);
         }
 
         void UpdateSceneActors(Vector3 position)
         {
-            pawnAppearanceWork.Clear();
-            pawnAppearanceWork.AddRange(pawnCards.Keys);
-            foreach (var pawn in pawnAppearanceWork)
-            {
-                var card = pawnCards[pawn];
-                Thing body = pawn.Corpse != null ? (Thing)pawn.Corpse : pawn;
-                bool defaultVisible = pawn != ControlledPawn || _viewCamera.HasFrame && _viewCamera.Frame.ShowBody || MortarAiming || cameraFlight && (position - controller.Position).sqrMagnitude > 4f;
-                bool visible = body.Spawned && body.Map == map && !map.fogGrid.IsFogged(body.Position) && DrawSpatialThing(body) &&
-                    (body is Corpse ? defaultVisible : API.RimVisionPresentation.DrawPawn(pawn, FirstPerson ? ControlledPawn : null, defaultVisible));
-                card.gameObject.SetActive(visible);
-                if (!visible)
-                {
-                    if (body.Spawned && body.Map == map && !map.fogGrid.IsFogged(body.Position)) PositionPawnCard(pawn, body, card);
-                    continue;
-                }
-                UpdatePawnView(pawn, body);
-                if (pawnCards.TryGetValue(pawn, out card)) PositionPawnCard(pawn, body, card);
-            }
-            pawnAppearanceWork.Clear();
+            UpdatePawnPresentation(position);
             _objectPresentation.UpdateApiModels();
             foreach (var entry in doors)
             {
@@ -1452,6 +1445,7 @@ namespace Recovery.Rim3D
             DisposeVanillaOutlines();
             _outlines?.ClearRegistrations();
             _worldGeometry.ClearWallDamage();
+            _worldGeometry.ClearSpriteAnalyses();
             if (root != null) UnityEngine.Object.Destroy(root);
             if (Target != null) { if (RenderTexture.active == Target) RenderTexture.active = null; Target.Release(); UnityEngine.Object.Destroy(Target); Target = null; }
             foreach (var mesh in meshes) UnityEngine.Object.Destroy(mesh);
@@ -1495,6 +1489,10 @@ namespace Recovery.Rim3D
 
             readonly HashSet<Thing> _chunkThings = new HashSet<Thing>();
 
+            readonly List<Renderer> _shadowRemovalRenderers = new List<Renderer>();
+
+            readonly HashSet<Renderer> _shadowRemovalSet = new HashSet<Renderer>();
+
             internal GameObject ChunkRoot(Vector2Int key)
             {
                 if (_view.chunkRoots.TryGetValue(key, out var obj)) return obj;
@@ -1506,21 +1504,49 @@ namespace Recovery.Rim3D
 
             internal void RemoveMovingShadows(Transform owner)
             {
-                _view.removedShadowSources.Clear();
-                foreach (var entry in _view.movingShadows)
-                    if (entry.Key == null || entry.Value == null || entry.Key.transform.IsChildOf(owner) ||
-                        entry.Value.transform.IsChildOf(owner)) _view.removedShadowSources.Add(entry.Key);
-                foreach (var source in _view.removedShadowSources) _view.movingShadows.Remove(source);
-                _view.removedShadowSources.Clear();
-                for (int i = _view.projectedShadows.Count - 1; i >= 0; i--)
-                    if (_view.projectedShadows[i] == null || _view.projectedShadows[i].transform.IsChildOf(owner))
-                        _view.projectedShadows.RemoveAt(i);
+                try
+                {
+                    owner.GetComponentsInChildren(true, _shadowRemovalRenderers);
+                    foreach (var renderer in _shadowRemovalRenderers) _shadowRemovalSet.Add(renderer);
+                    _view.removedShadowSources.Clear();
+                    foreach (var entry in _view.movingShadows)
+                        if (entry.Key == null || entry.Value == null || _shadowRemovalSet.Contains(entry.Key) ||
+                            _shadowRemovalSet.Contains(entry.Value)) _view.removedShadowSources.Add(entry.Key);
+                    foreach (var source in _view.removedShadowSources) _view.movingShadows.Remove(source);
+                    int retained = 0;
+                    for (int i = 0; i < _view.projectedShadows.Count; i++)
+                    {
+                        var shadow = _view.projectedShadows[i];
+                        if (shadow == null || _shadowRemovalSet.Contains(shadow)) continue;
+                        _view.projectedShadows[retained++] = shadow;
+                    }
+                    if (retained < _view.projectedShadows.Count)
+                        _view.projectedShadows.RemoveRange(retained, _view.projectedShadows.Count - retained);
+                }
+                finally
+                {
+                    _view.removedShadowSources.Clear();
+                    _shadowRemovalSet.Clear();
+                    _shadowRemovalRenderers.Clear();
+                }
             }
 
             internal void UpdateProjectedShadowBounds(Renderer source, Renderer shadow)
             {
                 if (source == null || shadow == null || !source.gameObject.activeInHierarchy) return;
-                var bounds = source.bounds;
+                var world = ProjectedShadowBounds(source.bounds);
+                var inverse = shadow.transform.worldToLocalMatrix;
+                var extent = world.extents;
+                // Transform an AABB conservatively, including rotated/scaled held cards.
+                var localExtent = new Vector3(
+                    Mathf.Abs(inverse.m00) * extent.x + Mathf.Abs(inverse.m01) * extent.y + Mathf.Abs(inverse.m02) * extent.z,
+                    Mathf.Abs(inverse.m10) * extent.x + Mathf.Abs(inverse.m11) * extent.y + Mathf.Abs(inverse.m12) * extent.z,
+                    Mathf.Abs(inverse.m20) * extent.x + Mathf.Abs(inverse.m21) * extent.y + Mathf.Abs(inverse.m22) * extent.z);
+                shadow.localBounds = new Bounds(inverse.MultiplyPoint3x4(world.center), localExtent * 2);
+            }
+
+            internal Bounds ProjectedShadowBounds(Bounds bounds)
+            {
                 float groundY = _view.root.transform.position.y + .012f;
                 var rays = _view.sunlight.transform.forward;
                 var slope = new Vector2(rays.x, rays.z) / Mathf.Max(.1f, -rays.y);
@@ -1530,15 +1556,7 @@ namespace Recovery.Rim3D
                     bounds.min.z + Mathf.Min(slope.y * low, slope.y * high));
                 var max = new Vector3(bounds.max.x + Mathf.Max(slope.x * low, slope.x * high), groundY + .002f,
                     bounds.max.z + Mathf.Max(slope.y * low, slope.y * high));
-                var world = new Bounds((min + max) * .5f, max - min);
-                var inverse = shadow.transform.worldToLocalMatrix;
-                var extent = world.extents;
-                // Transform an AABB conservatively, including rotated/scaled held cards.
-                var localExtent = new Vector3(
-                    Mathf.Abs(inverse.m00) * extent.x + Mathf.Abs(inverse.m01) * extent.y + Mathf.Abs(inverse.m02) * extent.z,
-                    Mathf.Abs(inverse.m10) * extent.x + Mathf.Abs(inverse.m11) * extent.y + Mathf.Abs(inverse.m12) * extent.z,
-                    Mathf.Abs(inverse.m20) * extent.x + Mathf.Abs(inverse.m21) * extent.y + Mathf.Abs(inverse.m22) * extent.z);
-                shadow.localBounds = new Bounds(inverse.MultiplyPoint3x4(world.center), localExtent * 2);
+                return new Bounds((min + max) * .5f, max - min);
             }
 
             internal void CountThing(Thing thing, Vector2Int key)
@@ -1573,11 +1591,15 @@ namespace Recovery.Rim3D
                     _geometryBudgetTicks = 0;
                 }
                 if (_geometryBudgetTicks >= System.Diagnostics.Stopwatch.Frequency / 500) return;
+                GeometryUtility.CalculateFrustumPlanes(_view.camera, _geometryUpdatePlanes);
                 long started = System.Diagnostics.Stopwatch.GetTimestamp();
-                Vector2Int key;
-                using (var iterator = _view.dirtyChunks.GetEnumerator()) { iterator.MoveNext(); key = iterator.Current; }
-                _view.dirtyChunks.Remove(key);
-                _view.RebuildChunk(key);
+                do
+                {
+                    if (!TryTakeDirtyChunk(out var key)) break;
+                    _view.RebuildChunk(key);
+                }
+                while (_view.dirtyChunks.Count > 0 && _geometryBudgetTicks +
+                    System.Diagnostics.Stopwatch.GetTimestamp() - started < System.Diagnostics.Stopwatch.Frequency / 500);
                 UpdateWallDamage();
                 _geometryBudgetTicks += System.Diagnostics.Stopwatch.GetTimestamp() - started;
             }
@@ -1596,24 +1618,29 @@ namespace Recovery.Rim3D
             internal void RebuildChunk(Vector2Int key)
             {
                 ForgetWallDamage(key);
-                _view._objectPresentation.InvalidateModelChunk(key);
-                if (_view.chunkRoots.TryGetValue(key, out var oldRoot))
-                {
-                    _view.ReleaseMountainLods(oldRoot.transform);
-                    _view.CollectChunkMeshes(oldRoot); var removedDoors = new List<Building_Door>();
-                    foreach (var entry in _view.doors) if (entry.Value.IsChildOf(oldRoot.transform)) removedDoors.Add(entry.Key);
-                    foreach (var door in removedDoors) _view.doors.Remove(door);
-                    _view.RemoveMovingShadows(oldRoot.transform);
-                    var oldMeshes = new HashSet<Mesh>();
-                    foreach (var filter in oldRoot.GetComponentsInChildren<MeshFilter>(true)) oldMeshes.Add(filter.sharedMesh);
-                    oldRoot.SetActive(false);
-                    UnityEngine.Object.Destroy(oldRoot);
-                    _view.chunkRoots.Remove(key);
-                    foreach (var mesh in oldMeshes) { _view.meshes.Remove(mesh); UnityEngine.Object.Destroy(mesh); }
-                }
-                _view.geometryParent = _view.ChunkRoot(key).transform; _chunkReuseDestination = _view.geometryParent;
                 try
                 {
+                    _view.chunkRoots.TryGetValue(key, out var oldRoot);
+                    if (oldRoot != null) _view.ReleaseMountainLods(oldRoot.transform);
+                    _view._objectPresentation.InvalidateModelChunk(key);
+                    if (oldRoot != null)
+                    {
+                        _view.CollectChunkMeshes(oldRoot); var removedDoors = new List<Building_Door>();
+                        foreach (var entry in _view.doors) if (entry.Value.IsChildOf(oldRoot.transform)) removedDoors.Add(entry.Key);
+                        foreach (var door in removedDoors) _view.doors.Remove(door);
+                        _view.RemoveMovingShadows(oldRoot.transform);
+                        var oldMeshes = new HashSet<Mesh>();
+                        foreach (var filter in oldRoot.GetComponentsInChildren<MeshFilter>(true))
+                        {
+                            _view._outlines.UnregisterOutlineRenderer(filter.GetComponent<MeshRenderer>());
+                            oldMeshes.Add(filter.sharedMesh);
+                        }
+                        oldRoot.SetActive(false);
+                        UnityEngine.Object.Destroy(oldRoot);
+                        _view.chunkRoots.Remove(key);
+                        foreach (var mesh in oldMeshes) { _view.meshes.Remove(mesh); UnityEngine.Object.Destroy(mesh); }
+                    }
+                    _view.geometryParent = _view.ChunkRoot(key).transform; _chunkReuseDestination = _view.geometryParent;
                     int startX = key.x * ChunkSize, startZ = key.y * ChunkSize;
                     for (int z = startZ; z < Mathf.Min(startZ + ChunkSize, _view.map.Size.z); z++)
                     for (int x = startX; x < Mathf.Min(startX + ChunkSize, _view.map.Size.x); x++)
@@ -1946,65 +1973,10 @@ namespace Recovery.Rim3D
             internal float BottomPadding(Material material)
             {
                 if (_view.bottomPadding.TryGetValue(material, out var padding)) return padding;
-                var texture = material.mainTexture;
-                if (texture == null) return 0;
-                // Imported textures need not be CPU-readable. Read a small GPU copy
-                // once per material, including its atlas scale/offset, at view creation.
-                int width = Mathf.Clamp(texture.width, 1, 256);
-                int height = Mathf.Clamp(texture.height, 1, 512);
-                var previous = RenderTexture.active;
-                RenderTexture sample = null;
-                Texture2D pixels = null;
-                float visibleHeight = 1;
-                try
-                {
-                    sample = RenderTexture.GetTemporary(width, height, 0, RenderTextureFormat.ARGB32);
-                    Graphics.Blit(texture, sample, material.mainTextureScale, material.mainTextureOffset);
-                    RenderTexture.active = sample;
-                    pixels = new Texture2D(width, height, TextureFormat.RGBA32, false);
-                    pixels.ReadPixels(new Rect(0, 0, width, height), 0, 0, false);
-                    var colors = pixels.GetPixels32();
-                    var mask = new byte[64 * 80];
-                    for (int my = 0; my < 80; my++) for (int mx = 0; mx < 64; mx++)
-                        mask[my * 64 + mx] = colors[Mathf.Min(height - 1, my * height / 80) * width + Mathf.Min(width - 1, mx * width / 64)].a;
-                    _view.spriteMasks[material] = mask;
-                    float alpha = material.color.a;
-                    bool found = false;
-                    for (int y = 0; y < height && !found; y++)
-                        for (int x = 0; x < width; x++)
-                            if (colors[y * width + x].a / 255f * alpha >= .25f)
-                            {
-                                // Lower edge of the first visible row touches the ground.
-                                padding = y / (float)height;
-                                found = true;
-                                break;
-                            }
-                    if (found)
-                    {
-                        bool topFound = false;
-                        for (int y = height - 1; y >= 0 && !topFound; y--)
-                            for (int x = 0; x < width; x++)
-                                if (colors[y * width + x].a / 255f * alpha >= .25f)
-                                {
-                                    visibleHeight = (y + 1) / (float)height - padding;
-                                    topFound = true;
-                                    break;
-                                }
-                    }
-                }
-                catch (Exception error)
-                {
-                    Log.Warning("RimVision ground alignment: " + error.Message);
-                }
-                finally
-                {
-                    RenderTexture.active = previous;
-                    if (sample != null) RenderTexture.ReleaseTemporary(sample);
-                    if (pixels != null) UnityEngine.Object.Destroy(pixels);
-                }
-                _view.bottomPadding.Add(material, padding);
-                _view.visibleSpriteHeights[material] = visibleHeight;
-                return padding;
+                var analysis = MaterialSpriteAnalysis(material);
+                if (analysis == null) return 0;
+                ApplySpriteAnalysis(material, analysis);
+                return analysis.Padding;
             }
 
             internal Material ConvertMaterial(Material source, bool opaque)
@@ -2739,6 +2711,8 @@ namespace Recovery.Rim3D
                 material.SetInt("_GroundStencil", material == _view._groundCutoutMaterial ? GroundCutoutStencil : material.GetFloat("_Ground") > .5f ? 64 : 0);
                 renderer.shadowCastingMode = ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
+                bool chunkParent = _view.geometryParent != null &&
+                    (_view.geometryParent == _chunkReuseDestination || _view.chunkRoots.ContainsValue(_view.geometryParent.gameObject));
                 if (reused != null) renderer.ResetLocalBounds();
                 _view.ConfigureMountainLod(filter, renderer, material);
                 if (hasOutlineVolume) _view.RegisterOutlineRenderer(renderer);
@@ -2747,7 +2721,7 @@ namespace Recovery.Rim3D
                 {
                     foreach (var child in obj.GetComponentsInChildren<MeshRenderer>(true))
                         if (child != renderer) _view.UpdateProjectedShadowBounds(renderer, child);
-                    if (_view._constructionPlanMaterials.Contains(material) && _view.geometryParent != null && _view.chunkRoots.ContainsValue(_view.geometryParent.gameObject))
+                    if (_view._constructionPlanMaterials.Contains(material) && chunkParent)
                         obj.SetActive(!_view._constructionPlansHidden);
                     return obj;
                 }
@@ -2780,10 +2754,10 @@ namespace Recovery.Rim3D
                     _view.UpdateProjectedShadowBounds(renderer, footprintRenderer);
                     // Chunk geometry is stationary; pawn, held-item and door
                     // transforms (and pawn meshes) can change before each render.
-                    if (_view.geometryParent == null || !_view.chunkRoots.ContainsValue(_view.geometryParent.gameObject))
+                    if (!chunkParent)
                         _view.movingShadows.Add(renderer, footprintRenderer);
                 }
-                if (_view._constructionPlanMaterials.Contains(material) && _view.geometryParent != null && _view.chunkRoots.ContainsValue(_view.geometryParent.gameObject))
+                if (_view._constructionPlanMaterials.Contains(material) && chunkParent)
                     obj.SetActive(!_view._constructionPlansHidden);
                 return obj;
             }

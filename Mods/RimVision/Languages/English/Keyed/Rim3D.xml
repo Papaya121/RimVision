@@ -401,6 +401,9 @@
   <Rim3D_SettingHullOutlineWidth>Black hull width: {0} px</Rim3D_SettingHullOutlineWidth>
   <Rim3D_SettingInvertMouseY>Invert vertical mouse movement</Rim3D_SettingInvertMouseY>
   <Rim3D_SettingRenderScale>3D render scale: {0}%</Rim3D_SettingRenderScale>
+  <Rim3D_SettingViewDistance>View distance: {0} cells</Rim3D_SettingViewDistance>
+  <Rim3D_SettingViewDistanceUnlimited>View distance: unlimited</Rim3D_SettingViewDistanceUnlimited>
+  <Rim3D_SettingViewDistanceHint>Limits 3D rendering distance, including neighboring maps. Lower values reduce distant rendering. Overview adds the camera's distance from the focus. Mortar aiming and orthographic cameras retain their full view. The leftmost position keeps the original map-based distance. Applies immediately; pawn simulation is unchanged.</Rim3D_SettingViewDistanceHint>
   <Rim3D_SettingMaxPawnTextureResolution>Maximum pawn and animal capture resolution: {0} px</Rim3D_SettingMaxPawnTextureResolution>
   <Rim3D_SettingMaxPawnTextureResolutionHint>Resolution follows body, clothing and other source textures. This limit caps the longest side of the capture; higher values use more video memory. Applies immediately.</Rim3D_SettingMaxPawnTextureResolutionHint>
   <Rim3D_SettingFieldOfView>First-person field of view: {0}°</Rim3D_SettingFieldOfView>
@@ -696,4 +699,11 @@
   <Rim3D_ApiInvert>Invert</Rim3D_ApiInvert>
   <Rim3D_ApiDeadzone>Deadzone: {0}</Rim3D_ApiDeadzone>
   <Rim3D_ApiContractMismatch>RimVision API contracts differ from {0}. Check matching gameplay add-ons and versions.</Rim3D_ApiContractMismatch>
+  <Rim3D_SettingsSectionPerformance>Performance diagnostics</Rim3D_SettingsSectionPerformance>
+  <Rim3D_SettingPerformanceHint>Ctrl+Shift+F10 starts a 60-second recording; press again to finish early. After a two-second warmup, compare the same scene in 2D, running 3D and paused 3D. Saves FPS/TPS, worst frames, CPU timings and active mods to a text file alongside game saves: RimVision/Performance. Instrumentation adds overhead only while recording. No file is uploaded.</Rim3D_SettingPerformanceHint>
+  <Rim3D_PerformanceStart>Record a 60-second report</Rim3D_PerformanceStart>
+  <Rim3D_PerformanceStop>Stop and save ({0}s remaining)</Rim3D_PerformanceStop>
+  <Rim3D_PerformanceCopyPath>Copy report path</Rim3D_PerformanceCopyPath>
+  <Rim3D_PerformanceStarted>RimVision: performance recording started. Records 60 seconds after a 2-second warmup. Compare 2D, running 3D and paused 3D. Ctrl+Shift+F10 stops early.</Rim3D_PerformanceStarted>
+  <Rim3D_PerformanceSaved>RimVision: performance report saved: {0}</Rim3D_PerformanceSaved>
 </LanguageData>

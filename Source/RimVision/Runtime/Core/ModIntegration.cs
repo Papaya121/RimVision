@@ -119,6 +119,40 @@ namespace Recovery.Rim3D
         }
     }
 
+    [HarmonyPatch(typeof(Map), nameof(Map.MapUpdate))]
+    static class CoveredNativeDynamicDrawPatch
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var draw = AccessTools.Method(typeof(DynamicDrawManager), nameof(DynamicDrawManager.DrawDynamicThings));
+            var replacement = AccessTools.Method(typeof(CoveredNativeDynamicDrawPatch), nameof(DrawFromMapUpdate));
+            foreach (var instruction in instructions)
+            {
+                if (instruction.Calls(draw))
+                {
+                    var map = new CodeInstruction(OpCodes.Ldarg_0);
+                    map.labels.AddRange(instruction.labels);
+                    instruction.labels.Clear();
+                    yield return map;
+                    instruction.opcode = OpCodes.Call;
+                    instruction.operand = replacement;
+                }
+                yield return instruction;
+            }
+        }
+
+        static void DrawFromMapUpdate(DynamicDrawManager manager, Map map)
+        {
+            var window = Rim3DPreview.Instance?.ActiveWindow;
+            var decision = PerformanceCapture.NativeDrawDecision.Skipped;
+            if (window?.CoversNativeMap != true) decision = PerformanceCapture.NativeDrawDecision.NotCovered;
+            else if (window.Map != map || Find.CurrentMap != map) decision = PerformanceCapture.NativeDrawDecision.OtherMap;
+            else if (WorldComponent_GravshipController.GravshipRenderInProgess) decision = PerformanceCapture.NativeDrawDecision.Gravship;
+            PerformanceCapture.RecordNativeDrawDecision(decision);
+            if (decision != PerformanceCapture.NativeDrawDecision.Skipped) manager.DrawDynamicThings();
+        }
+    }
+
     [HarmonyPatch(typeof(UIRoot_Play), "UIRootOnGUI")]
     static class InputPatch
     {
@@ -130,6 +164,12 @@ namespace Recovery.Rim3D
             if (!ModsConfig.IsActive("papaya.rimvision")) return;
             foreach (var openWindow in Find.WindowStack.Windows)
                 if (openWindow is Rim3DSettings.BindingWindow) return;
+            if (e.type == EventType.KeyDown && e.keyCode == KeyCode.F10 && e.control && e.shift)
+            {
+                PerformanceCapture.Toggle();
+                e.Use();
+                return;
+            }
             var window = preview.ActiveWindow;
             var view = window?.IsOpen == true ? window.View : null;
             if (view != null && e.type == EventType.KeyDown && e.keyCode == KeyCode.F11)

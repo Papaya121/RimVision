@@ -199,6 +199,7 @@ namespace Recovery.Rim3D
                 }
                 camera.transform.SetPositionAndRotation(source.transform.position, source.transform.rotation);
                 _viewCamera.SetLook(source.transform.eulerAngles.y, source.transform.eulerAngles.x);
+                PreparePawnPresentation();
                 UpdatePawnAppearances();
                 UpdateWorldGeometry();
                 UpdateHeldThings();

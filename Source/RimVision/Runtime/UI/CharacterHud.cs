@@ -599,6 +599,24 @@ namespace Recovery.Rim3D
                 float width = Mathf.Min(600f, Mathf.Max(120f, viewport.width - 368f));
                 var row = new Rect(viewport.center.x - width * .5f,
                     viewport.y + 100f, width, 24f);
+                bool paused = Rim3DMultiplayer.Active
+                    ? (Rim3DMultiplayer.MinigameTickRate?.Invoke(_view.map) ?? 0) <= 0
+                    : Find.TickManager.Paused;
+                if (paused)
+                {
+                    string label = "Rim3D_BindingPause".Translate().ToString();
+                    _hudMessageContent.text = label;
+                    float panelWidth = Mathf.Min(width, _hudMessageStyle.CalcSize(_hudMessageContent).x + 58f);
+                    var panel = new Rect(viewport.center.x - panelWidth * .5f, row.y, panelWidth, 34f);
+                    var previousColor = GUI.color;
+                    GUI.color = Color.white;
+                    DrawNavigationPanel(panel);
+                    Widgets.DrawBoxSolid(new Rect(panel.x + 14f, panel.y + 10f, 4f, 14f), Color.white);
+                    Widgets.DrawBoxSolid(new Rect(panel.x + 22f, panel.y + 10f, 4f, 14f), Color.white);
+                    _view.Badge(new Rect(panel.x + 34f, panel.y, panel.width - 42f, panel.height), label, _hudMessageStyle);
+                    GUI.color = previousColor;
+                    row.y = panel.yMax + 4f;
+                }
                 if (_view._constructionPlansHidden)
                     _view.DrawTopHudMessage(ref row, "Rim3D_PlansHidden".TranslateBindings().ToString());
                 if (!_view.FirstPerson)

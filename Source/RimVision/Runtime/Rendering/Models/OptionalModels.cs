@@ -235,6 +235,9 @@ namespace Recovery.Rim3D
             internal void InvalidateModelChunk(Vector2Int key)
             {
                 if (!_modelChunks.TryGetValue(key, out var chunk)) return;
+                if (chunk.Roots != null)
+                    foreach (var root in chunk.Roots)
+                        if (root != null) _view.CollectChunkMeshes(root);
                 chunk.Geometry = null;
                 chunk.Roots = null;
                 chunk.RebuildOnLevelChange = false;

@@ -320,7 +320,7 @@ namespace Recovery.Rim3D
 
         float PawnStandingSpriteTop(Pawn pawn)
         {
-            float top = PawnSpriteTop(pawn);
+            float top = PawnCollisionSpriteTop(pawn);
             if (Rim3DMultiplayer.Active && pawnCards.ContainsKey(pawn) && pawnViews.TryGetValue(pawn, out var view) &&
                 !view.Prone && view.Bed == null)
                 top += PawnControl.CrouchDepth * view.CrouchBlend;
@@ -547,9 +547,11 @@ namespace Recovery.Rim3D
 
             readonly Dictionary<Material, Material> _weaponVolumeMaterials = new Dictionary<Material, Material>();
 
-            readonly Dictionary<(Material, float, float, bool), Geometry> _weaponVolumes = new Dictionary<(Material, float, float, bool), Geometry>();
+            readonly Dictionary<((UnityEngine.Object, Vector2, Vector2, uint), float, float, float, bool), Geometry> _weaponVolumes =
+                new Dictionary<((UnityEngine.Object, Vector2, Vector2, uint), float, float, float, bool), Geometry>();
 
-            readonly Dictionary<Material, (byte[] Mask, int Width, int Height)> _volumeMasks = new Dictionary<Material, (byte[], int, int)>();
+            readonly Dictionary<(UnityEngine.Object, Vector2, Vector2, uint), (byte[] Mask, int Width, int Height)> _volumeMasks =
+                new Dictionary<(UnityEngine.Object, Vector2, Vector2, uint), (byte[], int, int)>();
 
             readonly Dictionary<Pawn, HeldCard> _carriedItems = new Dictionary<Pawn, HeldCard>();
 
@@ -586,6 +588,22 @@ namespace Recovery.Rim3D
                 }
                 foreach (var pawn in _view.map.mapPawns.AllPawnsSpawned)
                 {
+                    if (!_view.PawnPresentationRelevant(pawn, pawn))
+                    {
+                        if (_view.weapons.TryGetValue(pawn, out var weapon) && weapon.Object != null)
+                        {
+                            weapon.Object.SetActive(false);
+                            weapon.RunBlend = weapon.AimBlend = 0;
+                            weapon.RunFrame = -1;
+                        }
+                        if (_carriedItems.TryGetValue(pawn, out var carried) && carried.Object != null)
+                        {
+                            carried.Object.SetActive(false);
+                            carried.RunBlend = carried.AimBlend = 0;
+                            carried.RunFrame = -1;
+                        }
+                        continue;
+                    }
                     _view.UpdateHeldCard(_view.weapons, pawn, pawn.equipment?.Primary, false);
                     ApplyWeaponAnimation(_view.weapons, pawn, false);
                     _view.UpdateHeldCard(_carriedItems, pawn, pawn.carryTracker?.CarriedThing, true);
@@ -905,7 +923,8 @@ namespace Recovery.Rim3D
                         nativeOffset += Quaternion.Euler(0, -_view.yaw, 0) * recoilOffset;
                         angle += recoilAngle;
                     }
-                    offset = new Vector3(nativeOffset.x * PawnVisualScale, nativeOffset.z * PawnVisualScale, -.025f);
+                    float depth = facing == Rot4.North ? .16f * PawnVisualScale : -.025f;
+                    offset = new Vector3(nativeOffset.x * PawnVisualScale, nativeOffset.z * PawnVisualScale, depth);
                     tilt = -angle;
                 }
                 card.Object.transform.localPosition = position + rotation * offset;
@@ -1096,9 +1115,17 @@ namespace Recovery.Rim3D
                 return volumeMaterial;
             }
 
+            static (UnityEngine.Object, Vector2, Vector2, uint) VolumeTextureKey(Material material)
+            {
+                var texture = material.mainTexture as Texture2D;
+                return (texture != null ? (UnityEngine.Object)texture : material, material.mainTextureScale,
+                    material.mainTextureOffset, texture != null ? texture.updateCount : 0);
+            }
+
             internal byte[] ReadVolumeMask(Material material, byte[] fallback, out int width, out int height)
             {
-                if (_volumeMasks.TryGetValue(material, out var cached))
+                var key = VolumeTextureKey(material);
+                if (_volumeMasks.TryGetValue(key, out var cached))
                 {
                     width = cached.Width;
                     height = cached.Height;
@@ -1117,10 +1144,10 @@ namespace Recovery.Rim3D
                     RenderTexture.active = sample;
                     pixels = new Texture2D(width, height, TextureFormat.RGBA32, false);
                     pixels.ReadPixels(new Rect(0, 0, width, height), 0, 0, false);
-                    var colors = pixels.GetPixels32();
+                    var colors = pixels.GetRawTextureData<Color32>();
                     var mask = new byte[colors.Length];
                     for (int i = 0; i < colors.Length; i++) mask[i] = colors[i].a;
-                    _volumeMasks.Add(material, (mask, width, height));
+                    _volumeMasks.Add(key, (mask, width, height));
                     return mask;
                 }
                 catch (Exception error)
@@ -1128,7 +1155,7 @@ namespace Recovery.Rim3D
                     Log.Warning("RimVision item contour: " + error.Message);
                     width = 64;
                     height = 80;
-                    _volumeMasks.Add(material, (fallback, width, height));
+                    _volumeMasks.Add(key, (fallback, width, height));
                     return fallback;
                 }
                 finally
@@ -1354,7 +1381,7 @@ namespace Recovery.Rim3D
 
             internal Geometry WeaponVolume(Material material, float width, float height, bool hasMuzzle)
             {
-                var key = (material, width, height, hasMuzzle);
+                var key = (VolumeTextureKey(material), material.color.a, width, height, hasMuzzle);
                 if (_weaponVolumes.TryGetValue(key, out var cached)) return cached;
                 var geometry = new Geometry();
                 // Reuse the existing cached GPU alpha readback, including atlas UVs.

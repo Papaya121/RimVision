@@ -7,7 +7,7 @@
   <modDependencies><li><packageId>brrainz.harmony</packageId><displayName>Harmony</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl></li></modDependencies>
   <loadAfter><li>brrainz.harmony</li><li>Ludeon.RimWorld</li></loadAfter>
   <description>
-v0.0.5.2
+v0.0.5.3
 
 RIMVISION
 

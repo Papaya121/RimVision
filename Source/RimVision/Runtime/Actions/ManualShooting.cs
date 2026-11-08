@@ -704,7 +704,7 @@ namespace Recovery.Rim3D
                     }
                     if (!manual.DeterministicFlight)
                     {
-                        manual.PawnHeight = _view.PawnSpriteTop;
+                        manual.PawnHeight = _view.PawnCollisionSpriteTop;
                         manual.PawnRayHit = _view.RaycastPawnSprite;
                         manual.BedRayHit = _view.RaycastBed;
                     }

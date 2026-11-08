@@ -573,7 +573,8 @@ namespace Recovery.Rim3D.Multiplayer
             if (view?.FirstPerson != true || !MP.InInterface || Event.current == null || normalSpeedVote == null ||
                 !bindings.TryGetValue(view.Controller, out var binding) || binding.Pending || !binding.NormalizeEntrySpeed) return;
             // Use MP's time vote once on entry. Its UI method requires a GUI event.
-            sendSpeed.Invoke(null, normalSpeedVote);
+            if (MultiplayerControlPausePatch.TickRate(RimVisionControl.MapFor(binding.Pawn)) > 0)
+                sendSpeed.Invoke(null, normalSpeedVote);
             binding.NormalizeEntrySpeed = false;
         }
     }
